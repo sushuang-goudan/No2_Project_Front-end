@@ -1,28 +1,41 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div id="top">
+      <nav-bar></nav-bar>
+    </div>
+    <div id="bottom">
+      <form-view></form-view>
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+  import NavBar from './components/bars/NavBar.vue'
+  import FormView from './views/FormView.vue';
 
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
+  export default {
+    components: {
+      NavBar,
+      FormView
+    },
+    data: function () {
+      return {
+
+      }
+    },
   }
-}
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  #top {
+    width: 70vw;
+    height: 15vh;
+    margin: 0 15vw;
+  }
+
+  #bottom {
+    width: 70vw;
+    height: 80vh;
+    margin: 0 15vw;
+  }
 </style>
