@@ -60,7 +60,7 @@
                         <el-form-item label="主要诊断ICD-10六位临床扩展编码与名称">
                             <el-select v-model="form01.HB01_15" placeholder="请选择">
                                 <el-option
-                                    v-for="item in option01_14to01_15[form01.HB01_14.charCodeAt()-'a'.charCodeAt()]"
+                                    v-for="item in option01_15[form01.HB01_14.charCodeAt()-'a'.charCodeAt()]"
                                     :key="item.value" :label="item.label" :value="item.value"></el-option>
                             </el-select>
                         </el-form-item>
@@ -286,7 +286,7 @@
                         label: ' 未特指的胃恶性肿瘤'
                     },
                 ],
-                option01_14to01_15: [
+                option01_15: [
                     [{
                             value: 'a',
                             label: ' 无'
