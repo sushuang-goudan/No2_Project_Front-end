@@ -1,5 +1,5 @@
 <template>
-    <div id="form-view">
+    <div id="form-view" class="formView">
         <div id="side">
             <side-bar></side-bar>
         </div>
@@ -426,4 +426,11 @@
         margin-top: 4%;
         margin-right: 20%
     }
+    .formView >>>.el-checkbox__label {
+        display: inline-grid;
+        white-space: pre-line;
+        word-wrap: break-word;
+        overflow: hidden;
+        line-height: 20px;
+}
 </style>
