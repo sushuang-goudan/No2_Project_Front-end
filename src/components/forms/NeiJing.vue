@@ -122,14 +122,14 @@
                         </el-radio>
                     </el-radio-group>
                 </el-form-item>
-                <el-form-item label="是否有术前评估" v-show="form3.NJ3_1==='y'&& form3.NJ3_1_1_1==='y'">
+                <el-form-item label="是否有术前评估" v-show="form3.NJ3_1==='y'&&form3.NJ3_1_1_1==='y'">
                     <el-radio-group v-model="form3.NJ3_1_1_1_1_1" placeholder="请选择">
                         <el-radio v-for="item in option3_1_1_1_1_1" :key="item.value" :label="item.value">{{item.label}}
                         </el-radio>
                     </el-radio-group>
                 </el-form-item>
                 <el-form-item label="术前评估内容"
-                    v-show="form3.NJ3_1==='y'&& form3.NJ3_1_1_1==='y'&& form3.NJ3_1_1_1_1_1==='y'">
+                    v-show="form3.NJ3_1==='y'&&form3.NJ3_1_1_1==='y'&&form3.NJ3_1_1_1_1_1==='y'">
                     <el-checkbox-group v-model="form3.NJ3_1_1_1_1_1_1_1">
                         <el-checkbox v-for="item in option3_1_1_1_1_1_1_1" :key="item.value" :label="item.label">
                         </el-checkbox>
@@ -147,14 +147,14 @@
                         </el-radio>
                     </el-radio-group>
                 </el-form-item>
-                <el-form-item label="治疗禁忌证" v-show="form3.NJ3_1==='y'&& form3.NJ3_1_1_3==='y'">
+                <el-form-item label="治疗禁忌证" v-show="form3.NJ3_1==='y'&&form3.NJ3_1_1_3==='y'">
                     <el-select v-model="form3.NJ3_1_1_3_1_1" placeholder="请选择">
                         <el-option v-for="item in option3_1_1_3_1_1" :key="item.value" :label="item.label"
                             :value="item.value"></el-option>
                     </el-select>
                 </el-form-item>
                 <el-form-item label="其他治疗禁忌证"
-                    v-show="form3.NJ3_1==='y'&& form3.NJ3_1_1_3==='y'&& form3.NJ3_1_1_3_1_1==='d'">
+                    v-show="form3.NJ3_1==='y'&&form3.NJ3_1_1_3==='y'&&form3.NJ3_1_1_3_1_1==='d'">
                     <el-input v-model="form3.NJ3_1_1_3_1_1_4_1"></el-input>
                 </el-form-item>
                 <el-form-item label="术式选择" v-show="form3.NJ3_1==='y'">
@@ -230,8 +230,8 @@
                         </el-radio>
                     </el-radio-group>
                 </el-form-item>
-                <el-form-item label="并发症" v-model="form5.NJ5_1_1_1" v-show="form5.NJ5_1==='y'">
-                    <el-checkbox-group>
+                <el-form-item label="并发症" v-show="form5.NJ5_1==='y'">
+                    <el-checkbox-group v-model="form5.NJ5_1_1_1">
                         <el-checkbox v-for="item in option5_1_1_1" :key="item.value" :label="item.label">
                         </el-checkbox>
                     </el-checkbox-group>
