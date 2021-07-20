@@ -48,7 +48,9 @@
                             <el-input v-model="form1.HB1_12"></el-input>
                         </el-form-item>
                         <el-form-item label="体重指数（kg/m2）">
-                            <el-input v-model="form1.HB1_13" :disabled="true"></el-input>
+                            <el-input v-model="form1.HB1_13" :disabled="true" >
+                              {{getBmi()}}
+                            </el-input>
                         </el-form-item>
                         <el-form-item label="主要诊断ICD-10四位亚目编码与名称">
                             <el-select v-model="form1.HB1_14" placeholder="请选择">
@@ -394,6 +396,14 @@
                     _this.$router.replace('/zong-he');
                     _this.activeFormGroup = '';
                 }
+            },
+            getBmi(){
+              if((this.form1.HB1_11!==0)&&(this.form1.HB1_12!==0)){
+                this.form1.HB1_13 = (this.form1.HB1_11/((this.form1.HB1_12/100)*(this.form1.HB1_12/100))).toFixed(2);
+                return this.form1.HB1_13;
+              }else{
+                return null;
+              }
             }
         },
     }
