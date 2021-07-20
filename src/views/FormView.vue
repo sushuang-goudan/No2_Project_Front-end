@@ -32,14 +32,10 @@
                             <el-input v-model="form1.HB1_8"></el-input>
                         </el-form-item>
                         <el-form-item label="出生日期">
-                            <el-input v-model="form1.HB1_9"></el-input>
+                            <el-input v-model="form1.HB1_9" :disabled="true"></el-input>
                         </el-form-item>
                         <el-form-item label="患者性别">
-                            <el-select v-model="form1.HB1_10" placeholder="请选择">
-                                <el-option v-for="item in option1_10" :key="item.value" :label="item.label"
-                                    :value="item.value">
-                                </el-option>
-                            </el-select>
+                            <el-input v-model="form1.HB1_10" :disabled="true"></el-input>
                         </el-form-item>
                         <el-form-item label="患者体重（kg）">
                             <el-input v-model="form1.HB1_11"></el-input>
@@ -48,8 +44,7 @@
                             <el-input v-model="form1.HB1_12"></el-input>
                         </el-form-item>
                         <el-form-item label="体重指数（kg/m2）">
-                            <el-input v-model="form1.HB1_13" :disabled="true" >
-                              {{getBmi()}}
+                            <el-input v-model="form1.HB1_13" :disabled="true">
                             </el-input>
                         </el-form-item>
                         <el-form-item label="主要诊断ICD-10四位亚目编码与名称">
@@ -61,17 +56,15 @@
                         </el-form-item>
                         <el-form-item label="主要诊断ICD-10六位临床扩展编码与名称">
                             <el-select v-model="form1.HB1_15" placeholder="请选择">
-                                <el-option
-                                    v-for="item in option1_15[form1.HB1_14.charCodeAt()-'a'.charCodeAt()]"
+                                <el-option v-for="item in option1_15[form1.HB1_14.charCodeAt()-'a'.charCodeAt()]"
                                     :key="item.value" :label="item.label" :value="item.value"></el-option>
                             </el-select>
                         </el-form-item>
                         <el-form-item label="是否出院后31天内重复住院">
-                            <el-select v-model="form1.HB1_16" placeholder="请选择">
-                                <el-option v-for="item in option1_16" :key="item.value" :label="item.label"
-                                    :value="item.value">
-                                </el-option>
-                            </el-select>
+                            <el-radio-group v-model="form1.HB1_16" placeholder="请选择">
+                                <el-radio v-for="item in option1_16" :key="item.value" :label="item.value">{{item.label}}
+                                </el-radio>
+                            </el-radio-group>
                         </el-form-item>
                         <el-form-item label="费用支付方式">
                             <el-select v-model="form1.HB1_17" placeholder="请选择">
@@ -137,15 +130,6 @@
                     HB1_19: '',
                     HB1_20: '',
                 },
-                option1_10: [{
-                        value: 'm',
-                        label: ' 男'
-                    },
-                    {
-                        value: 'f',
-                        label: ' 女'
-                    },
-                ],
                 option1_14: [{
                         value: 'a',
                         label: ' 贲门恶性肿瘤'
@@ -323,11 +307,11 @@
                     ],
                 ],
                 option1_16: [{
-                        value: 'y',
+                        value: 'a',
                         label: ' 是'
                     },
                     {
-                        value: 'n',
+                        value: 'b',
                         label: ' 否'
                     },
                 ],
@@ -386,26 +370,82 @@
         methods: {
             submit() {
                 let _this = this;
-                if (_this.form1.HB1_20 === 'a') {
-                    _this.$router.replace('/shou-shu');
-                    _this.activeFormGroup = '';
-                } else if (_this.form1.HB1_20 === 'b') {
-                    _this.$router.replace('/nei-jing');
-                    _this.activeFormGroup = '';
-                } else if (_this.form1.HB1_20 === 'c') {
-                    _this.$router.replace('/zong-he');
-                    _this.activeFormGroup = '';
+                console.log(_this.form1);
+                if (_this.form1.HB1_16 === 'a') {
+                    alert("出院后31天内重复住院,不符合上报要求");
+                } else {
+                    if (_this.form1.HB1_20 === 'a') {
+                        _this.$router.replace('/shou-shu');
+                        _this.activeFormGroup = '';
+                    } else if (_this.form1.HB1_20 === 'b') {
+                        _this.$router.replace('/nei-jing');
+                        _this.activeFormGroup = '';
+                    } else if (_this.form1.HB1_20 === 'c') {
+                        _this.$router.replace('/zong-he');
+                        _this.activeFormGroup = '';
+                    }
                 }
             },
-            getBmi(){
-              if((this.form1.HB1_11!==0)&&(this.form1.HB1_12!==0)){
-                this.form1.HB1_13 = (this.form1.HB1_11/((this.form1.HB1_12/100)*(this.form1.HB1_12/100))).toFixed(2);
-                return this.form1.HB1_13;
-              }else{
-                return null;
-              }
+            setBirthDateAndSexual() {
+                let _this = this;
+                let reg = /(^\d{17}(x|X|\d)$)/
+                let idCard = _this.form1.HB1_8;
+                if (!reg.test(idCard)) {
+                    _this.form1.HB1_9 = '请输入正确的第二代身份证号码';
+                    _this.form1.HB1_10 = '请输入正确的第二代身份证号码';
+                    return false;
+                } else {
+                    _this.form1.HB1_9 = idCard.slice(6, 14).replace(/(.{4})(.{2})/, "$1-$2-");
+                    if (parseInt(idCard.slice(-2, -1)) % 2 == 1) {
+                        _this.form1.HB1_10 = '男';
+                    } else {
+                        _this.form1.HB1_10 = '女';
+                    }
+                    return true;
+                }
+            },
+            setBmi() {
+                let _this = this;
+                if (_this.form1.HB1_11 == '' || _this.form1.HB1_12 == '' || _this.form1.HB1_11 == 0 || _this.form1
+                    .HB1_12 == 0) {
+                    _this.form1.HB1_13 = '';
+                    return false;
+                }
+                let reg = /^\d+(\.\d+)?$/;
+                if (reg.test(_this.form1.HB1_11) && reg.test(_this.form1.HB1_12)) {
+                    _this.form1.HB1_13 = (parseFloat(_this.form1.HB1_11) / ((parseFloat(_this.form1.HB1_12) / 100) *
+                        (
+                            parseFloat(_this.form1.HB1_12) / 100))).toFixed(2);
+                    return true;
+                } else {
+                    _this.form1.HB1_13 = '';
+                    return false;
+                }
             }
         },
+        computed: {
+            idCardWatch() {
+                let _this = this;
+                return _this.form1.HB1_8;
+            },
+            bmiWatch() {
+                let _this = this;
+                let _arr = [];
+                _arr.push(_this.form1.HB1_11);
+                _arr.push(_this.form1.HB1_12);
+                return _arr.join(",")
+            }
+        },
+        watch: {
+            idCardWatch() {
+                let _this = this;
+                _this.setBirthDateAndSexual();
+            },
+            bmiWatch() {
+                let _this = this;
+                _this.setBmi();
+            }
+        }
     }
 </script>
 
@@ -436,11 +476,12 @@
         margin-top: 4%;
         margin-right: 20%
     }
-    .formView >>>.el-checkbox__label {
+
+    .formView>>>.el-checkbox__label {
         display: inline-grid;
         white-space: pre-line;
         word-wrap: break-word;
         overflow: hidden;
         line-height: 20px;
-}
+    }
 </style>
