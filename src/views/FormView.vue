@@ -94,6 +94,7 @@
                 </el-collapse-item>
                 <router-view></router-view>
             </el-collapse>
+            <img id='upbutton' v-if="btnFlag" class="upButton" src="../assets/topButton.png" @click="backTop">
         </div>
     </div>
 </template>
@@ -108,6 +109,8 @@
         data: function () {
             return {
                 activeFormGroup: '',
+                btnFlag:false,
+                scrollTop:'',
                 form1: {
                     HB1_1: '',
                     HB1_2: '',
@@ -367,6 +370,12 @@
                 ],
             }
         },
+         mounted(){
+            window.addEventListener('scroll',this.scrollToTop,true)
+        },
+        destroyed(){
+            window.removeEventListener('scroll',this.scrollToTop)
+        },
         methods: {
             submit() {
                 let _this = this;
@@ -404,24 +413,6 @@
                     return true;
                 }
             },
-            setBmi() {
-                let _this = this;
-                if (_this.form1.HB1_11 == '' || _this.form1.HB1_12 == '' || _this.form1.HB1_11 == 0 || _this.form1
-                    .HB1_12 == 0) {
-                    _this.form1.HB1_13 = '';
-                    return false;
-                }
-                let reg = /^\d+(\.\d+)?$/;
-                if (reg.test(_this.form1.HB1_11) && reg.test(_this.form1.HB1_12)) {
-                    _this.form1.HB1_13 = (parseFloat(_this.form1.HB1_11) / ((parseFloat(_this.form1.HB1_12) / 100) *
-                        (
-                            parseFloat(_this.form1.HB1_12) / 100))).toFixed(2);
-                    return true;
-                } else {
-                    _this.form1.HB1_13 = '';
-                    return false;
-                }
-            }
         },
         computed: {
             idCardWatch() {
@@ -450,6 +441,12 @@
 </script>
 
 <style scoped>
+     #upbutton {
+        position: fixed;
+        right :180px;
+        bottom:20px;
+        width:50px;
+    }
     #form-view {
         display: flex;
         margin: 0 auto;
