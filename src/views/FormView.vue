@@ -101,6 +101,7 @@
                 </el-collapse-item>
                 <router-view></router-view>
             </el-collapse>
+            <img id='upbutton' v-if="btnFlag" class="upButton" src="../assets/topButton.png" @click="backTop">
         </div>
     </div>
 </template>
@@ -115,6 +116,8 @@
         data: function () {
             return {
                 activeFormGroup: '',
+                btnFlag:false,
+                scrollTop:'',
                 form1: {
                     HB1_1: '',
                     HB1_2: '',
@@ -383,6 +386,12 @@
                 ],
             }
         },
+         mounted(){
+            window.addEventListener('scroll',this.scrollToTop,true)
+        },
+        destroyed(){
+            window.removeEventListener('scroll',this.scrollToTop)
+        },
         methods: {
             submit() {
                 let _this = this;
@@ -404,12 +413,39 @@
               }else{
                 return null;
               }
+            },
+            backTop(){
+                const that = this;
+                let timer= setInterval(()=>{
+                    let upSpeed = Math.floor(-that.scrollTop/5);
+                    document.documentElement.scrollTop = document.body.scrollTop = that.scrollTop + upSpeed;
+                    if(that.scrollTop === 0){
+                        clearInterval(timer);
+                    }
+                },16)
+            },
+            scrollToTop(){
+               //alert('进入');
+                const that=this;
+                let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+                that.scrollTop = scrollTop;
+                if(that.scrollTop > 60){
+                    that.btnFlag=true;
+                }else{
+                    that.btnFlag=false;
+                }
             }
         },
     }
 </script>
 
 <style scoped>
+     #upbutton {
+        position: fixed;
+        right :180px;
+        bottom:20px;
+        width:50px;
+    }
     #form-view {
         display: flex;
         margin: 0 auto;
