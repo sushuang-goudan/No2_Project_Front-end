@@ -413,6 +413,45 @@
                     return true;
                 }
             },
+            setBmi() {
+                let _this = this;
+                if (_this.form1.HB1_11 == '' || _this.form1.HB1_12 == '' || _this.form1.HB1_11 == 0 || _this.form1
+                    .HB1_12 == 0) {
+                    _this.form1.HB1_13 = '';
+                    return false;
+                }
+                let reg = /^\d+(\.\d+)?$/;
+                if (reg.test(_this.form1.HB1_11) && reg.test(_this.form1.HB1_12)) {
+                    _this.form1.HB1_13 = (parseFloat(_this.form1.HB1_11) / ((parseFloat(_this.form1.HB1_12) / 100) *
+                        (
+                            parseFloat(_this.form1.HB1_12) / 100))).toFixed(2);
+                    return true;
+                } else {
+                    _this.form1.HB1_13 = '';
+                    return false;
+                }
+            },
+            backTop(){
+                const that = this;
+                let timer= setInterval(()=>{
+                    let upSpeed = Math.floor(-that.scrollTop/5);
+                    document.documentElement.scrollTop = document.body.scrollTop = that.scrollTop + upSpeed;
+                    if(that.scrollTop === 0){
+                        clearInterval(timer);
+                    }
+                },16)
+            },
+            scrollToTop(){
+               //alert('进入');
+                const that=this;
+                let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+                that.scrollTop = scrollTop;
+                if(that.scrollTop > 60){
+                    that.btnFlag=true;
+                }else{
+                    that.btnFlag=false;
+                }
+            },
         },
         computed: {
             idCardWatch() {
