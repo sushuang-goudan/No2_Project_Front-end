@@ -4,7 +4,9 @@
       <nav-bar></nav-bar>
     </div>
     <div id="bottom">
-      <form-view></form-view>
+      <keep-alive include="formView">
+        <form-view></form-view>
+      </keep-alive>
     </div>
   </div>
 </template>

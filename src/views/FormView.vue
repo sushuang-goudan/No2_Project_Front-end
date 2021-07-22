@@ -4,7 +4,7 @@
             <side-bar></side-bar>
         </div>
         <div id="form">
-            <el-collapse v-model="activeFormGroup" accordion>
+            <el-collapse v-model="activeFormGroup" accordion @change="changeCoItem">
                 <el-collapse-item title="一、基本信息" name="formGroup1">
                     <el-form ref="form1" :model="form1" label-width="300px">
                         <el-form-item label="主刀医师">
@@ -87,30 +87,39 @@
                             </el-select>
                         </el-form-item>
                         <el-form-item>
-                            <el-button type="primary" @click="submit">保存</el-button>
+                            <el-button type="primary" @click="submit(0)">保存</el-button>
                             <el-button>重置</el-button>
                         </el-form-item>
                     </el-form>
                 </el-collapse-item>
-                <router-view></router-view>
+                <keep-alive include="ZongHe,ShouShu,NeiJing">
+                    <router-view  @getSuccess='submit' @athing='upAthing'></router-view>
+                </keep-alive>
             </el-collapse>
             <img id='upbutton' v-if="btnFlag" class="upButton" src="../assets/topButton.png" @click="backTop">
         </div>
+        <div id="progress" >
+            <progress-bar :active="whichActive" :titles="PBtitles"></progress-bar>
+        </div>        
     </div>
 </template>
 
 <script>
     import SideBar from '../components/bars/SideBar.vue'
-
+    import ProgressBar from '../components/bars/ProgressBar.vue'
     export default {
+        name:'formView',
         components: {
-            SideBar
+            SideBar,
+            ProgressBar
         },
         data: function () {
             return {
                 activeFormGroup: '',
                 btnFlag:false,
                 scrollTop:'',
+                collapseNumbers : '',
+                whichActive : '',              
                 form1: {
                     HB1_1: '',
                     HB1_2: '',
@@ -370,15 +379,20 @@
                 ],
             }
         },
-         mounted(){
-            window.addEventListener('scroll',this.scrollToTop,true)
+        mounted(){           
+            window.addEventListener('scroll',this.scrollToTop,true);
         },
         destroyed(){
             window.removeEventListener('scroll',this.scrollToTop)
         },
+        activated(){
+             this.upAthing();
+        },       
         methods: {
-            submit() {
+            submit(val) {
                 let _this = this;
+                _this.whichActive =Number(val+1);
+                _this.PBtitles[val].status='success';
                 console.log(_this.form1);
                 if (_this.form1.HB1_16 === 'a') {
                     alert("出院后31天内重复住院,不符合上报要求");
@@ -452,6 +466,42 @@
                     that.btnFlag=false;
                 }
             },
+            upAthing() {
+            //计算路由更新后的el-collapse-item的个数（在<keep-alive>下）
+                var numbers = document.getElementsByClassName('el-collapse-item').length;
+                this.collapseNumbers=numbers;
+                if(numbers>1){
+                    this.PBtitles[0].status='success';
+                    this.PBtitles[1].status='progress'
+                }                
+            },
+            changeCoItem(val) {
+                let _this=this,index,lastStatus,activeStatus,nextStatus,i;
+                _this.whichActive = Number(val.substr(9));
+                index=_this.whichActive-1;
+                activeStatus=_this.PBtitles[index].status;                
+                if(index ==(this.collapseNumbers-1)||index==0){
+                    this.changeSide(index);
+                }
+                lastStatus=_this.PBtitles[index-1].status;
+                alert(lastStatus);             
+                nextStatus=_this.PBtitles[index+1].status;
+                if(lastStatus==='success'&&(activeStatus==='wait'||activeStatus==='progress')&& nextStatus!== 'progress'){
+                    _this.PBtitles[index].status ='finish'
+                    _this.PBtitles[index+1].status = 'progress'
+                }else if(activeStatus==='finish'){
+                    _this.PBtitles[index+1].status = 'progress'
+                    for(i=index+1;i<_this.collapseNumbers;i++){
+                        _this.PBtitles[i+1].status = 'wait'
+                    }
+                }
+            },
+            changeSide(index){
+                let _this=this,activeStatus=_this.PBtitles[index].status;
+                if(activeStatus=='progress'){
+                    _this.PBtitles[index].status = 'finish'
+                }
+            }
         },
         computed: {
             idCardWatch() {
@@ -464,6 +514,30 @@
                 _arr.push(_this.form1.HB1_11);
                 _arr.push(_this.form1.HB1_12);
                 return _arr.join(",")
+            },
+            PBtitles : {
+                get: function(){
+                    var steps = [],step = {},i;
+                    if(this.collapseNumbers===1){
+                        step.title = '第' +1+'部分';
+                        step.key=1;
+                        step.status='wait'
+                        steps.push(step);
+                        step = {}                       
+                    }else{
+                        for (i =1;i < this.collapseNumbers;i++){
+                        step.title = '第' + (i+1) +'部分';
+                        step.key=i+1;
+                        step.status='wait'
+                        steps.push(step);
+                        step = {}
+                    }
+                    }
+                    return steps;
+                },
+                set: function(){
+                    
+                }
             }
         },
         watch: {
@@ -502,6 +576,13 @@
         height: 100%;
         margin: 0 auto;
     }
+
+    #progress >>> .el-steps{
+        height: 80%;
+        position: fixed;
+        top:12%;
+        bottom:10%;
+    }    
 
     .el-collapse {
         width: 80%;

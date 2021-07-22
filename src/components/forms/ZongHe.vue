@@ -21,7 +21,7 @@
                     </el-select>
                 </el-form-item>
                 <el-form-item>
-                    <el-button type="primary" @click="submit">保存</el-button>
+                    <el-button type="primary" @click="submit(1)">保存</el-button>
                     <el-button>重置</el-button>
                 </el-form-item>
             </el-form>
@@ -65,7 +65,7 @@
                     </el-radio-group>
                 </el-form-item>
                 <el-form-item>
-                    <el-button type="primary" @click="submit">保存</el-button>
+                    <el-button type="primary" @click="submit(2)">保存</el-button>
                     <el-button>重置</el-button>
                 </el-form-item>
             </el-form>
@@ -145,7 +145,7 @@
                     </el-radio-group>
                 </el-form-item>
                 <el-form-item>
-                    <el-button type="primary" @click="submit">保存</el-button>
+                    <el-button type="primary" @click="submit(3)">保存</el-button>
                     <el-button>重置</el-button>
                 </el-form-item>
             </el-form>
@@ -195,7 +195,7 @@
                     </el-select>
                 </el-form-item>
                 <el-form-item>
-                    <el-button type="primary" @click="submit">保存</el-button>
+                    <el-button type="primary" @click="submit(4)">保存</el-button>
                     <el-button>重置</el-button>
                 </el-form-item>
             </el-form>
@@ -231,7 +231,7 @@
                     </el-select>
                 </el-form-item>
                 <el-form-item>
-                    <el-button type="primary" @click="submit">保存</el-button>
+                    <el-button type="primary" @click="submit(5)">保存</el-button>
                     <el-button>重置</el-button>
                 </el-form-item>
             </el-form>
@@ -275,7 +275,7 @@
                     </el-checkbox-group>
                 </el-form-item>
                 <el-form-item>
-                    <el-button type="primary" @click="submit">保存</el-button>
+                    <el-button type="primary" @click="submit(6)">保存</el-button>
                     <el-button>重置</el-button>
                 </el-form-item>
             </el-form>
@@ -311,7 +311,7 @@
                     </el-select>
                 </el-form-item>
                 <el-form-item>
-                    <el-button type="primary" @click="submit">保存</el-button>
+                    <el-button type="primary" @click="submit(7)">保存</el-button>
                     <el-button>重置</el-button>
                 </el-form-item>
             </el-form>
@@ -334,7 +334,7 @@
                     <el-input v-model="form9.ZH9_5"></el-input>
                 </el-form-item>
                 <el-form-item>
-                    <el-button type="primary" @click="submit">保存</el-button>
+                    <el-button type="primary" @click="submit(8)">保存</el-button>
                     <el-button>重置</el-button>
                 </el-form-item>
             </el-form>
@@ -344,6 +344,7 @@
 
 <script>
     export default {
+        name:'ZongHe',
         data: function () {
             return {
                 form2: {
@@ -1085,10 +1086,18 @@
                 ],
             }
         },
+        activated(){
+            let _this=this;
+            _this.$emit('athing');
+        },
         methods: {
-            submit() {
+            submit(val) {
                 let _this = this;
                 console.log(_this);
+                _this.$emit('getSuccess',val);
+                _this.$router.push({
+                    name:'ZongHe'
+                })               
             }
         }
     }
