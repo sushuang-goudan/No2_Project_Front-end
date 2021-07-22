@@ -484,7 +484,7 @@
                     this.changeSide(index);
                 }
                 lastStatus=_this.PBtitles[index-1].status;
-                alert(lastStatus);             
+                //alert(lastStatus);             
                 nextStatus=_this.PBtitles[index+1].status;
                 if(lastStatus==='success'&&(activeStatus==='wait'||activeStatus==='progress')&& nextStatus!== 'progress'){
                     _this.PBtitles[index].status ='finish'
