@@ -2,108 +2,168 @@
     <div>
         <el-collapse-item title="二、手术前评估和治疗前临床TNM分期" name="formGroup2">
             <el-form ref="form2" :model="form2" label-width="300px">
-                <el-form-item label="临床TNM分期前主要检查项目">
-                    <el-checkbox-group v-model="form2.NJ2_1">
-                        <el-checkbox v-for="item in option2_1" :key="item.value" :label="item.label">
-                        </el-checkbox>
-                    </el-checkbox-group>
-                </el-form-item>
-                <el-form-item label="治疗前是否完成胃癌CT分期">
-                    <el-radio-group v-model="form2.NJ2_2" placeholder="请选择">
-                        <el-radio v-for="item in option2_2" :key="item.value" :label="item.value">{{item.label}}
-                        </el-radio>
-                    </el-radio-group>
-                </el-form-item>
-                <el-form-item label="CT分期病理学定义" v-show="form2.NJ2_2==='a'">
-                    <el-select v-model="form2.NJ2_2_1_1" placeholder="请选择">
-                        <el-option v-for="item in option2_2_1_1" :key="item.value" :label="item.label"
-                            :value="item.value">
-                        </el-option>
-                    </el-select>
-                </el-form-item>
-                <el-form-item label="治疗前是否完成胃癌超声内镜（EUS）分期">
-                    <el-radio-group v-model="form2.NJ2_3" placeholder="请选择">
-                        <el-radio v-for="item in option2_3" :key="item.value" :label="item.value">{{item.label}}
-                        </el-radio>
-                    </el-radio-group>
-                </el-form-item>
-                <el-form-item label="UT分期病理学定义" v-show="form2.NJ2_3==='a'">
-                    <el-select v-model="form2.NJ2_3_1_1" placeholder="请选择">
-                        <el-option v-for="item in option2_3_1_1" :key="item.value" :label="item.label"
-                            :value="item.value">
-                        </el-option>
-                    </el-select>
-                </el-form-item>
-                <el-form-item label="治疗前是否完成临床TNM分期">
-                    <el-radio-group v-model="form2.NJ2_4" placeholder="请选择">
-                        <el-radio v-for="item in option2_4" :key="item.value" :label="item.value">{{item.label}}
-                        </el-radio>
-                    </el-radio-group>
-                </el-form-item>
-                <el-form-item label="原发肿瘤（T）分期" v-show="form2.NJ2_4==='a'">
-                    <el-select v-model="form2.NJ2_4_1_1" placeholder="请选择">
-                        <el-option v-for="item in option2_4_1_1" :key="item.value" :label="item.label"
-                            :value="item.value">
-                        </el-option>
-                    </el-select>
-                </el-form-item>
-                <el-form-item label="区域淋巴结（N）分期" v-show="form2.NJ2_4==='a'">
-                    <el-select v-model="form2.NJ2_4_1_2" placeholder="请选择">
-                        <el-option v-for="item in option2_4_1_2" :key="item.value" :label="item.label"
-                            :value="item.value">
-                        </el-option>
-                    </el-select>
-                </el-form-item>
-                <el-form-item label="远处转移（M）分期" v-show="form2.NJ2_4==='a'">
-                    <el-select v-model="form2.NJ2_4_1_3" placeholder="请选择">
-                        <el-option v-for="item in option2_4_1_3" :key="item.value" :label="item.label"
-                            :value="item.value">
-                        </el-option>
-                    </el-select>
-                </el-form-item>
-                <el-form-item label="胃癌治疗前cTNM分期结论" v-show="form2.NJ2_4==='a'">
-                    <el-select v-model="form2.NJ2_4_1_4" placeholder="请选择">
-                        <el-option v-for="item in option2_4_1_4" :key="item.value" :label="item.label"
-                            :value="item.value">
-                        </el-option>
-                    </el-select>
-                </el-form-item>
-                <el-form-item label="是否是治疗前接受过2个或以上治疗科室会诊的患者">
-                    <el-radio-group v-model="form2.NJ2_5" placeholder="请选择">
-                        <el-radio v-for="item in option2_5" :key="item.value" :label="item.value">{{item.label}}
-                        </el-radio>
-                    </el-radio-group>
-                </el-form-item>
-                <el-form-item label="患者术前心肺功能等级">
-                    <el-select v-model="form2.NJ2_6" placeholder="请选择">
-                        <el-option v-for="item in option2_6" :key="item.value" :label="item.label" :value="item.value">
-                        </el-option>
-                    </el-select>
-                </el-form-item>
-                <el-form-item label="患者是否做过术前血栓风险评估">
-                    <el-radio-group v-model="form2.NJ2_7" placeholder="请选择">
-                        <el-radio v-for="item in option2_7" :key="item.value" :label="item.value">{{item.label}}
-                        </el-radio>
-                    </el-radio-group>
-                </el-form-item>
-                <el-form-item label="血栓风险评估结果">
-                    <el-select v-model="form2.NJ2_7_1_1" placeholder="请选择">
-                        <el-option v-for="item in option2_7_1_1" :key="item.value" :label="item.label"
-                            :value="item.value">
-                        </el-option>
-                    </el-select>
-                </el-form-item>
-                <el-form-item label="是否相应接受过抗凝治疗">
-                    <el-radio-group v-model="form2.NJ2_7_1_2" placeholder="请选择">
-                        <el-radio v-for="item in option2_7_1_2" :key="item.value" :label="item.value">{{item.label}}
-                        </el-radio>
-                    </el-radio-group>
-                </el-form-item>
-                <el-form-item label="抗凝治疗方案">
-                    <el-input v-model="form2.NJ2_7_1_2_1_1"></el-input>
-                </el-form-item>
+
+                <el-card class="card-item" shadow="hover">
+                    <div slot="header" class="card-title">
+                        <span>2.1 完成临床TNM分期前主要检查项目</span>
+                    </div>
+                    <div class="card-content">
+                        <el-form-item label="临床TNM分期前主要检查项目">
+                            <el-checkbox-group v-model="form2.NJ2_1">
+                                <el-checkbox v-for="item in option2_1" :key="item.value" :label="item.label">
+                                </el-checkbox>
+                            </el-checkbox-group>
+                        </el-form-item>
+                    </div>
+                </el-card>
+
+                <el-card class="card-item" shadow="hover">
+                    <div slot="header" class="card-title">
+                        <span>2.2 胃癌CT分期征象</span>
+                    </div>
+                    <div class="card-content">
+                        <el-form-item label="治疗前是否完成胃癌CT分期">
+                            <el-radio-group v-model="form2.NJ2_2" placeholder="请选择">
+                                <el-radio v-for="item in option2_2" :key="item.value" :label="item.value">{{item.label}}
+                                </el-radio>
+                            </el-radio-group>
+                        </el-form-item>
+                        <el-form-item label="CT分期病理学定义" v-show="form2.NJ2_2==='a'">
+                            <el-select v-model="form2.NJ2_2_1_1" placeholder="请选择">
+                                <el-option v-for="item in option2_2_1_1" :key="item.value" :label="item.label"
+                                    :value="item.value">
+                                </el-option>
+                            </el-select>
+                        </el-form-item>
+                    </div>
+                </el-card>
+
+                <el-card class="card-item" shadow="hover">
+                    <div slot="header" class="card-title">
+                        <span>2.3 胃癌超声内镜（EUS）分期征象</span>
+                    </div>
+                    <div class="card-content">
+                        <el-form-item label="治疗前是否完成胃癌超声内镜（EUS）分期">
+                            <el-radio-group v-model="form2.NJ2_3" placeholder="请选择">
+                                <el-radio v-for="item in option2_3" :key="item.value" :label="item.value">{{item.label}}
+                                </el-radio>
+                            </el-radio-group>
+                        </el-form-item>
+                        <el-form-item label="UT分期病理学定义" v-show="form2.NJ2_3==='a'">
+                            <el-select v-model="form2.NJ2_3_1_1" placeholder="请选择">
+                                <el-option v-for="item in option2_3_1_1" :key="item.value" :label="item.label"
+                                    :value="item.value">
+                                </el-option>
+                            </el-select>
+                        </el-form-item>
+                    </div>
+                </el-card>
+
+                <el-card class="card-item" shadow="hover">
+                    <div slot="header" class="card-title">
+                        <span>2.4 胃癌治疗前临床TNM分期结论</span>
+                    </div>
+                    <div class="card-content">
+                        <el-form-item label="治疗前是否完成临床TNM分期">
+                            <el-radio-group v-model="form2.NJ2_4" placeholder="请选择">
+                                <el-radio v-for="item in option2_4" :key="item.value" :label="item.value">{{item.label}}
+                                </el-radio>
+                            </el-radio-group>
+                        </el-form-item>
+                        <el-form-item label="原发肿瘤（T）分期" v-show="form2.NJ2_4==='a'">
+                            <el-select v-model="form2.NJ2_4_1_1" placeholder="请选择">
+                                <el-option v-for="item in option2_4_1_1" :key="item.value" :label="item.label"
+                                    :value="item.value">
+                                </el-option>
+                            </el-select>
+                        </el-form-item>
+                        <el-form-item label="区域淋巴结（N）分期" v-show="form2.NJ2_4==='a'">
+                            <el-select v-model="form2.NJ2_4_1_2" placeholder="请选择">
+                                <el-option v-for="item in option2_4_1_2" :key="item.value" :label="item.label"
+                                    :value="item.value">
+                                </el-option>
+                            </el-select>
+                        </el-form-item>
+                        <el-form-item label="远处转移（M）分期" v-show="form2.NJ2_4==='a'">
+                            <el-select v-model="form2.NJ2_4_1_3" placeholder="请选择">
+                                <el-option v-for="item in option2_4_1_3" :key="item.value" :label="item.label"
+                                    :value="item.value">
+                                </el-option>
+                            </el-select>
+                        </el-form-item>
+                        <el-form-item label="胃癌治疗前cTNM分期结论" v-show="form2.NJ2_4==='a'">
+                            <el-select v-model="form2.NJ2_4_1_4" placeholder="请选择">
+                                <el-option v-for="item in option2_4_1_4" :key="item.value" :label="item.label"
+                                    :value="item.value">
+                                </el-option>
+                            </el-select>
+                        </el-form-item>
+                    </div>
+                </el-card>
+
+                <el-card class="card-item" shadow="hover">
+                    <div slot="header" class="card-title">
+                        <span>2.5 患者治疗前接受（MDT）多学科协作诊疗</span>
+                    </div>
+                    <div class="card-content">
+                        <el-form-item label="是否是治疗前接受过2个或以上治疗科室会诊的患者">
+                            <el-radio-group v-model="form2.NJ2_5" placeholder="请选择">
+                                <el-radio v-for="item in option2_5" :key="item.value" :label="item.value">{{item.label}}
+                                </el-radio>
+                            </el-radio-group>
+                        </el-form-item>
+                    </div>
+                </el-card>
+
+                <el-card class="card-item" shadow="hover">
+                    <div slot="header" class="card-title">
+                        <span>2.6 患者术前心肺功能（ASA）评级</span>
+                    </div>
+                    <div class="card-content">
+                        <el-form-item label="患者术前心肺功能等级">
+                            <el-select v-model="form2.NJ2_6" placeholder="请选择">
+                                <el-option v-for="item in option2_6" :key="item.value" :label="item.label"
+                                    :value="item.value">
+                                </el-option>
+                            </el-select>
+                        </el-form-item>
+                    </div>
+                </el-card>
+
+
+                <el-card class="card-item" shadow="hover">
+                    <div slot="header" class="card-title">
+                        <span>2.7 患者术前血栓风险评估（Caprini评分）</span>
+                    </div>
+                    <div class="card-content">
+                        <el-form-item label="患者是否做过术前血栓风险评估">
+                            <el-radio-group v-model="form2.NJ2_7" placeholder="请选择">
+                                <el-radio v-for="item in option2_7" :key="item.value" :label="item.value">{{item.label}}
+                                </el-radio>
+                            </el-radio-group>
+                        </el-form-item>
+                        <el-form-item label="血栓风险评估结果">
+                            <el-select v-model="form2.NJ2_7_1_1" placeholder="请选择">
+                                <el-option v-for="item in option2_7_1_1" :key="item.value" :label="item.label"
+                                    :value="item.value">
+                                </el-option>
+                            </el-select>
+                        </el-form-item>
+                        <el-form-item label="是否相应接受过抗凝治疗">
+                            <el-radio-group v-model="form2.NJ2_7_1_2" placeholder="请选择">
+                                <el-radio v-for="item in option2_7_1_2" :key="item.value" :label="item.value">
+                                    {{item.label}}
+                                </el-radio>
+                            </el-radio-group>
+                        </el-form-item>
+                        <el-form-item label="抗凝治疗方案">
+                            <el-input v-model="form2.NJ2_7_1_2_1_1"></el-input>
+                        </el-form-item>
+                    </div>
+                </el-card>
+
                 <el-form-item>
-                    <el-button type="primary" @click="submit(1)" >保存</el-button>
+                    <el-button type="primary" @click="submit(1)">保存</el-button>
                     <el-button>重置</el-button>
                 </el-form-item>
             </el-form>
@@ -224,24 +284,33 @@
         </el-collapse-item>
         <el-collapse-item title="五、术后并发症与再手术情况" name="formGroup5">
             <el-form ref="form5" :model="form5" label-width="300px">
-                <el-form-item label="内镜治疗术后并发症">
-                    <el-radio-group v-model="form5.NJ5_1" placeholder="请选择">
-                        <el-radio v-for="item in option5_1" :key="item.value" :label="item.value">{{item.label}}
-                        </el-radio>
-                    </el-radio-group>
-                </el-form-item>
-                <el-form-item label="并发症" v-show="form5.NJ5_1==='a'">
-                    <el-checkbox-group v-model="form5.NJ5_1_1_1">
-                        <el-checkbox v-for="item in option5_1_1_1" :key="item.value" :label="item.label">
-                        </el-checkbox>
-                    </el-checkbox-group>
-                </el-form-item>
-                <el-form-item label="术后并发症处理" v-show="form5.NJ5_1==='a'">
-                    <el-select v-model="form5.NJ5_1_1_2" placeholder="请选择">
-                        <el-option v-for="item in option5_1_1_2" :key="item.value" :label="item.label"
-                            :value="item.value"></el-option>
-                    </el-select>
-                </el-form-item>
+
+                <el-card class="card-item" shadow="hover">
+                    <div slot="header" class="card-title">
+                        <span>5.1 内镜治疗术后并发症及处理</span>
+                    </div>
+                    <div class="card-content">
+                        <el-form-item label="内镜治疗术后并发症">
+                            <el-radio-group v-model="form5.NJ5_1" placeholder="请选择">
+                                <el-radio v-for="item in option5_1" :key="item.value" :label="item.value">{{item.label}}
+                                </el-radio>
+                            </el-radio-group>
+                        </el-form-item>
+                        <el-form-item label="并发症" v-show="form5.NJ5_1==='a'">
+                            <el-checkbox-group v-model="form5.NJ5_1_1_1">
+                                <el-checkbox v-for="item in option5_1_1_1" :key="item.value" :label="item.label">
+                                </el-checkbox>
+                            </el-checkbox-group>
+                        </el-form-item>
+                        <el-form-item label="术后并发症处理" v-show="form5.NJ5_1==='a'">
+                            <el-select v-model="form5.NJ5_1_1_2" placeholder="请选择">
+                                <el-option v-for="item in option5_1_1_2" :key="item.value" :label="item.label"
+                                    :value="item.value"></el-option>
+                            </el-select>
+                        </el-form-item>
+                    </div>
+                </el-card>
+
                 <el-form-item>
                     <el-button type="primary" @click="submit(4)">保存</el-button>
                     <el-button>重置</el-button>
@@ -250,40 +319,57 @@
         </el-collapse-item>
         <el-collapse-item title="六、营养支持治疗情况" name="formGroup6">
             <el-form ref="form6" :model="form6" label-width="300px">
-                <el-form-item label="术前是否进行营养评估">
-                    <el-checkbox-group v-model="form6.NJ6_1">
-                        <el-checkbox v-for="item in option6_1" :key="item.value" :label="item.label">
-                        </el-checkbox>
-                    </el-checkbox-group>
-                </el-form-item>
-                <el-form-item label="NRS-2002评估分值" v-show="form6.NJ6_1.indexOf('使用NRS-2002进行营养评估')>-1">
-                    <el-input v-model="form6.NJ6_1_1_1"></el-input>
-                </el-form-item>
-                <el-form-item label="PG-SGA评估分级" v-show="form6.NJ6_1.indexOf('使用PG-SGA进行营养评估')>-1">
-                    <el-select v-model="form6.NJ6_1_2_1" placeholder="请选择">
-                        <el-option v-for="item in option6_1_2_1" :key="item.value" :label="item.label"
-                            :value="item.value">
-                        </el-option>
-                    </el-select>
-                </el-form-item>
-                <el-form-item label="MNA评估分值" v-show="form6.NJ6_1.indexOf('使用MNA进行营养评估')>-1">
-                    <el-input v-model="form6.NJ6_1_3_1"></el-input>
-                </el-form-item>
-                <el-form-item label="术前是否给予营养支持">
-                    <el-radio-group v-model="form6.NJ6_2" placeholder="请选择">
-                        <el-radio v-for="item in option6_2" :key="item.value" :label="item.value">{{item.label}}
-                        </el-radio>
-                    </el-radio-group>
-                </el-form-item>
-                <el-form-item label="术前给予营养支持符合原则规范" v-show="form6.NJ6_2==='a'">
-                    <el-checkbox-group v-model="form6.NJ6_2_1_1">
-                        <el-checkbox v-for="item in option6_2_1_1" :key="item.value" :label="item.label">
-                        </el-checkbox>
-                    </el-checkbox-group>
-                </el-form-item>
-                <el-form-item label="其他术前给予营养支持符合原则规范" v-show="form6.NJ6_2==='a'&&form6.NJ6_2_1_1.indexOf('其他')>-1">
-                    <el-input v-model="form6.NJ6_2_1_1_5_1"></el-input>
-                </el-form-item>
+                <el-card class="card-item" shadow="hover">
+                    <div slot="header" class="card-title">
+                        <span>6.1 NRS-2002进行营养风险筛查与评估</span>
+                    </div>
+                    <div class="card-content">
+                        <el-form-item label="术前是否进行营养评估">
+                            <el-checkbox-group v-model="form6.NJ6_1">
+                                <el-checkbox v-for="item in option6_1" :key="item.value" :label="item.label">
+                                </el-checkbox>
+                            </el-checkbox-group>
+                        </el-form-item>
+                        <el-form-item label="NRS-2002评估分值" v-show="form6.NJ6_1.indexOf('使用NRS-2002进行营养评估')>-1">
+                            <el-input v-model="form6.NJ6_1_1_1"></el-input>
+                        </el-form-item>
+                        <el-form-item label="PG-SGA评估分级" v-show="form6.NJ6_1.indexOf('使用PG-SGA进行营养评估')>-1">
+                            <el-select v-model="form6.NJ6_1_2_1" placeholder="请选择">
+                                <el-option v-for="item in option6_1_2_1" :key="item.value" :label="item.label"
+                                    :value="item.value">
+                                </el-option>
+                            </el-select>
+                        </el-form-item>
+                        <el-form-item label="MNA评估分值" v-show="form6.NJ6_1.indexOf('使用MNA进行营养评估')>-1">
+                            <el-input v-model="form6.NJ6_1_3_1"></el-input>
+                        </el-form-item>
+                    </div>
+                </el-card>
+
+                <el-card class="card-item" shadow="hover">
+                    <div slot="header" class="card-title">
+                        <span>6.2 术前给予营养支持</span>
+                    </div>
+                    <div class="card-content">
+                        <el-form-item label="术前是否给予营养支持">
+                            <el-radio-group v-model="form6.NJ6_2" placeholder="请选择">
+                                <el-radio v-for="item in option6_2" :key="item.value" :label="item.value">{{item.label}}
+                                </el-radio>
+                            </el-radio-group>
+                        </el-form-item>
+                        <el-form-item label="术前给予营养支持符合原则规范" v-show="form6.NJ6_2==='a'">
+                            <el-checkbox-group v-model="form6.NJ6_2_1_1">
+                                <el-checkbox v-for="item in option6_2_1_1" :key="item.value" :label="item.label">
+                                </el-checkbox>
+                            </el-checkbox-group>
+                        </el-form-item>
+                        <el-form-item label="其他术前给予营养支持符合原则规范"
+                            v-show="form6.NJ6_2==='a'&&form6.NJ6_2_1_1.indexOf('其他')>-1">
+                            <el-input v-model="form6.NJ6_2_1_1_5_1"></el-input>
+                        </el-form-item>
+                    </div>
+                </el-card>
+
                 <el-form-item>
                     <el-button type="primary" @click="submit(5)">保存</el-button>
                     <el-button>重置</el-button>
@@ -398,7 +484,7 @@
 
 <script>
     export default {
-        name:'NeiJing',
+        name: 'NeiJing',
         data: function () {
             return {
                 form2: {
@@ -1327,18 +1413,18 @@
                 ],
             }
         },
-        activated(){
-            let _this=this;
+        activated() {
+            let _this = this;
             _this.$emit('athing')
         },
         methods: {
             submit(val) {
                 let _this = this;
                 console.log(_this);
-                _this.$emit('getSuccess',val);
+                _this.$emit('getSuccess', val);
                 _this.$router.push({
-                    name:'NeiJing'
-                })                
+                    name: 'NeiJing'
+                })
             }
         }
     }

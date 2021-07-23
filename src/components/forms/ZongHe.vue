@@ -2,24 +2,33 @@
     <div>
         <el-collapse-item title="二、术后精确放疗应用情况" name="formGroup2">
             <el-form ref="form2" :model="form2" label-width="300px">
-                <el-form-item label="是否进行术后辅助放疗">
-                    <el-radio-group v-model="form2.ZH2_1" placeholder="请选择">
-                        <el-radio v-for="item in option2_1" :key="item.value" :label="item.value">{{item.label}}
-                        </el-radio>
-                    </el-radio-group>
-                </el-form-item>
-                <el-form-item label="术后辅助放疗指征的选择" v-show="form2.ZH2_1==='a'">
-                    <el-select v-model="form2.ZH2_1_1_1" placeholder="请选择">
-                        <el-option v-for="item in option2_1_1_1" :key="item.value" :label="item.label"
-                            :value="item.value"></el-option>
-                    </el-select>
-                </el-form-item>
-                <el-form-item label="精确放疗技术的选择" v-show="form2.ZH2_1==='a'">
-                    <el-select v-model="form2.ZH2_1_1_2" placeholder="请选择">
-                        <el-option v-for="item in option2_1_1_2" :key="item.value" :label="item.label"
-                            :value="item.value"></el-option>
-                    </el-select>
-                </el-form-item>
+
+                <el-card class="card-item" shadow="hover">
+                    <div slot="header" class="card-title">
+                        <span>2.1 术后辅助放疗</span>
+                    </div>
+                    <div class="card-content">
+                        <el-form-item label="是否进行术后辅助放疗">
+                            <el-radio-group v-model="form2.ZH2_1" placeholder="请选择">
+                                <el-radio v-for="item in option2_1" :key="item.value" :label="item.value">{{item.label}}
+                                </el-radio>
+                            </el-radio-group>
+                        </el-form-item>
+                        <el-form-item label="术后辅助放疗指征的选择" v-show="form2.ZH2_1==='a'">
+                            <el-select v-model="form2.ZH2_1_1_1" placeholder="请选择">
+                                <el-option v-for="item in option2_1_1_1" :key="item.value" :label="item.label"
+                                    :value="item.value"></el-option>
+                            </el-select>
+                        </el-form-item>
+                        <el-form-item label="精确放疗技术的选择" v-show="form2.ZH2_1==='a'">
+                            <el-select v-model="form2.ZH2_1_1_2" placeholder="请选择">
+                                <el-option v-for="item in option2_1_1_2" :key="item.value" :label="item.label"
+                                    :value="item.value"></el-option>
+                            </el-select>
+                        </el-form-item>
+                    </div>
+                </el-card>
+
                 <el-form-item>
                     <el-button type="primary" @click="submit(1)">保存</el-button>
                     <el-button>重置</el-button>
@@ -72,78 +81,105 @@
         </el-collapse-item>
         <el-collapse-item title="四、胃癌化疗方案" name="formGroup4">
             <el-form ref="form4" :model="form4" label-width="300px">
-                <el-form-item label="是否为临床或病理分期为M1的胃癌病例">
-                    <el-radio-group v-model="form4.ZH4_1" placeholder="请选择">
-                        <el-radio v-for="item in option4_1" :key="item.value" :label="item.value">{{item.label}}
-                        </el-radio>
-                    </el-radio-group>
-                </el-form-item>
-                <el-form-item label="是否为胃癌初次化疗" v-show="form4.ZH4_1==='a'">
-                    <el-radio-group v-model="form4.ZH4_1_1_1" placeholder="请选择">
-                        <el-radio v-for="item in option4_1_1_1" :key="item.value" :label="item.value">{{item.label}}
-                        </el-radio>
-                    </el-radio-group>
-                </el-form-item>
-                <el-form-item label="胃癌初次化疗采用方案" v-show="form4.ZH4_1==='a'&&form4.ZH4_1_1_1==='a'">
-                    <el-checkbox-group v-model="form4.ZH4_1_1_1_1_1">
-                        <el-checkbox v-for="item in option4_1_1_1_1_1" :key="item.value" :label="item.label">
-                        </el-checkbox>
-                    </el-checkbox-group>
-                </el-form-item>
-                <el-form-item label="顺铂＋氟尿嘧啶类"
-                    v-show="form4.ZH4_1==='a'&&form4.ZH4_1_1_1==='a'&&form4.ZH4_1_1_1_1_1.indexOf('顺铂＋氟尿嘧啶类')>-1">
-                    <el-select v-model="form4.ZH4_1_1_1_1_1_1_1" placeholder="请选择">
-                        <el-option v-for="item in option4_1_1_1_1_1_1_1" :key="item.value" :label="item.label"
-                            :value="item.value"></el-option>
-                    </el-select>
-                </el-form-item>
-                <el-form-item label="奥沙利铂＋氟尿嘧啶类"
-                    v-show="form4.ZH4_1==='a'&&form4.ZH4_1_1_1==='a'&&form4.ZH4_1_1_1_1_1.indexOf('奥沙利铂＋氟尿嘧啶类')>-1">
-                    <el-select v-model="form4.ZH4_1_1_1_1_1_2_1" placeholder="请选择">
-                        <el-option v-for="item in option4_1_1_1_1_1_2_1" :key="item.value" :label="item.label"
-                            :value="item.value"></el-option>
-                    </el-select>
-                </el-form-item>
-                <el-form-item label="三药联合方案"
-                    v-show="form4.ZH4_1==='a'&&form4.ZH4_1_1_1==='a'&&form4.ZH4_1_1_1_1_1.indexOf('三药联合方案')>-1">
-                    <el-select v-model="form4.ZH4_1_1_1_1_1_3_1" placeholder="请选择">
-                        <el-option v-for="item in option4_1_1_1_1_1_3_1" :key="item.value" :label="item.label"
-                            :value="item.value"></el-option>
-                    </el-select>
-                </el-form-item>
-                <el-form-item label="单药方案"
-                    v-show="form4.ZH4_1==='a'&&form4.ZH4_1_1_1==='a'&&form4.ZH4_1_1_1_1_1.indexOf('单药方案')>-1">
-                    <el-select v-model="form4.ZH4_1_1_1_1_1_4_1" placeholder="请选择">
-                        <el-option v-for="item in option4_1_1_1_1_1_4_1" :key="item.value" :label="item.label"
-                            :value="item.value"></el-option>
-                    </el-select>
-                </el-form-item>
-                <el-form-item label="其他胃癌初次化疗采用方案"
-                    v-show="form4.ZH4_1==='a'&&form4.ZH4_1_1_1==='a'&&form4.ZH4_1_1_1_1_1.indexOf('其他方案')>-1">
-                    <el-input v-model="form4.ZH4_1_1_1_1_1_5_1"></el-input>
-                </el-form-item>
-                <el-form-item label="手术后是否使用靶向治疗药物" v-show="form4.ZH4_1==='a'">
-                    <el-radio-group v-model="form4.ZH4_1_1_2" placeholder="请选择">
-                        <el-radio v-for="item in option4_1_1_2" :key="item.value" :label="item.value">{{item.label}}
-                        </el-radio>
-                    </el-radio-group>
-                </el-form-item>
-                <el-form-item label="胃癌常用靶向治疗药物" v-show="form4.ZH4_1==='a'&&form4.ZH4_1_1_2==='a'">
-                    <el-select v-model="form4.ZH4_1_1_2_1_1" placeholder="请选择">
-                        <el-option v-for="item in option4_1_1_2_1_1" :key="item.value" :label="item.label"
-                            :value="item.value"></el-option>
-                    </el-select>
-                </el-form-item>
-                <el-form-item label="其他靶向治疗药物"
-                    v-show="form4.ZH4_1==='a'&&form4.ZH4_1_1_2==='a'&&form4.ZH4_1_1_2_1_1==='d'">
-                    <el-input v-model="form4.ZH4_1_1_2_1_1_4_1"></el-input>
-                </el-form-item>
-                <el-form-item label="手术后是否使用免疫治疗">
-                    <el-radio-group v-model="form4.ZH4_2" placeholder="请选择">
-                        <el-radio v-for="item in option4_2" :key="item.value" :label="item.value">{{item.label}}
-                        </el-radio>
-                    </el-radio-group>
-                </el-form-item>
+                <el-card class="card-item" shadow="hover">
+                    <div slot="header" class="card-title">
+                        <span>4.1 胃癌化疗采用方案</span>
+                    </div>
+                    <div class="card-content">
+                        <el-form-item label="是否为临床或病理分期为M1的胃癌病例">
+                            <el-radio-group v-model="form4.ZH4_1" placeholder="请选择">
+                                <el-radio v-for="item in option4_1" :key="item.value" :label="item.value">{{item.label}}
+                                </el-radio>
+                            </el-radio-group>
+                        </el-form-item>
+                        <el-form-item label="是否为胃癌初次化疗" v-show="form4.ZH4_1==='a'">
+                            <el-radio-group v-model="form4.ZH4_1_1_1" placeholder="请选择">
+                                <el-radio v-for="item in option4_1_1_1" :key="item.value" :label="item.value">
+                                    {{item.label}}
+                                </el-radio>
+                            </el-radio-group>
+                        </el-form-item>
+                        <el-form-item label="胃癌初次化疗采用方案" v-show="form4.ZH4_1==='a'&&form4.ZH4_1_1_1==='a'">
+                            <el-checkbox-group v-model="form4.ZH4_1_1_1_1_1">
+                                <el-checkbox v-for="item in option4_1_1_1_1_1" :key="item.value" :label="item.label">
+                                </el-checkbox>
+                            </el-checkbox-group>
+                        </el-form-item>
+                        <el-form-item label="顺铂＋氟尿嘧啶类"
+                            v-show="form4.ZH4_1==='a'&&form4.ZH4_1_1_1==='a'&&form4.ZH4_1_1_1_1_1.indexOf('顺铂＋氟尿嘧啶类')>-1">
+                            <el-select v-model="form4.ZH4_1_1_1_1_1_1_1" placeholder="请选择">
+                                <el-option v-for="item in option4_1_1_1_1_1_1_1" :key="item.value" :label="item.label"
+                                    :value="item.value"></el-option>
+                            </el-select>
+                        </el-form-item>
+                        <el-form-item label="奥沙利铂＋氟尿嘧啶类"
+                            v-show="form4.ZH4_1==='a'&&form4.ZH4_1_1_1==='a'&&form4.ZH4_1_1_1_1_1.indexOf('奥沙利铂＋氟尿嘧啶类')>-1">
+                            <el-select v-model="form4.ZH4_1_1_1_1_1_2_1" placeholder="请选择">
+                                <el-option v-for="item in option4_1_1_1_1_1_2_1" :key="item.value" :label="item.label"
+                                    :value="item.value"></el-option>
+                            </el-select>
+                        </el-form-item>
+                        <el-form-item label="三药联合方案"
+                            v-show="form4.ZH4_1==='a'&&form4.ZH4_1_1_1==='a'&&form4.ZH4_1_1_1_1_1.indexOf('三药联合方案')>-1">
+                            <el-select v-model="form4.ZH4_1_1_1_1_1_3_1" placeholder="请选择">
+                                <el-option v-for="item in option4_1_1_1_1_1_3_1" :key="item.value" :label="item.label"
+                                    :value="item.value"></el-option>
+                            </el-select>
+                        </el-form-item>
+                        <el-form-item label="单药方案"
+                            v-show="form4.ZH4_1==='a'&&form4.ZH4_1_1_1==='a'&&form4.ZH4_1_1_1_1_1.indexOf('单药方案')>-1">
+                            <el-select v-model="form4.ZH4_1_1_1_1_1_4_1" placeholder="请选择">
+                                <el-option v-for="item in option4_1_1_1_1_1_4_1" :key="item.value" :label="item.label"
+                                    :value="item.value"></el-option>
+                            </el-select>
+                        </el-form-item>
+                        <el-form-item label="其他胃癌初次化疗采用方案"
+                            v-show="form4.ZH4_1==='a'&&form4.ZH4_1_1_1==='a'&&form4.ZH4_1_1_1_1_1.indexOf('其他方案')>-1">
+                            <el-input v-model="form4.ZH4_1_1_1_1_1_5_1"></el-input>
+                        </el-form-item>
+                    </div>
+                </el-card>
+
+                <el-card class="card-item" shadow="hover">
+                    <div slot="header" class="card-title">
+                        <span>4.2 靶向治疗</span>
+                    </div>
+                    <div class="card-content">
+                        <el-form-item label="手术后是否使用靶向治疗药物" v-show="form4.ZH4_1==='a'">
+                            <el-radio-group v-model="form4.ZH4_1_1_2" placeholder="请选择">
+                                <el-radio v-for="item in option4_1_1_2" :key="item.value" :label="item.value">
+                                    {{item.label}}
+                                </el-radio>
+                            </el-radio-group>
+                        </el-form-item>
+                        <el-form-item label="胃癌常用靶向治疗药物" v-show="form4.ZH4_1==='a'&&form4.ZH4_1_1_2==='a'">
+                            <el-select v-model="form4.ZH4_1_1_2_1_1" placeholder="请选择">
+                                <el-option v-for="item in option4_1_1_2_1_1" :key="item.value" :label="item.label"
+                                    :value="item.value"></el-option>
+                            </el-select>
+                        </el-form-item>
+                        <el-form-item label="其他靶向治疗药物"
+                            v-show="form4.ZH4_1==='a'&&form4.ZH4_1_1_2==='a'&&form4.ZH4_1_1_2_1_1==='d'">
+                            <el-input v-model="form4.ZH4_1_1_2_1_1_4_1"></el-input>
+                        </el-form-item>
+                    </div>
+                </el-card>
+
+                <el-card class="card-item" shadow="hover">
+                    <div slot="header" class="card-title">
+                        <span>4.3 免疫治疗</span>
+                    </div>
+                    <div class="card-content">
+                        <el-form-item label="手术后是否使用免疫治疗">
+                            <el-radio-group v-model="form4.ZH4_2" placeholder="请选择">
+                                <el-radio v-for="item in option4_2" :key="item.value" :label="item.value">
+                                    {{item.label}}
+                                </el-radio>
+                            </el-radio-group>
+                        </el-form-item>
+                    </div>
+                </el-card>
+
                 <el-form-item>
                     <el-button type="primary" @click="submit(3)">保存</el-button>
                     <el-button>重置</el-button>
@@ -152,48 +188,82 @@
         </el-collapse-item>
         <el-collapse-item title="五、抗肿瘤药物疗效评价" name="formGroup5">
             <el-form ref="form5" :model="form5" label-width="300px">
-                <el-form-item label="抗肿瘤药物疗效的选择">
-                    <el-select v-model="form5.ZH5_1" placeholder="请选择">
-                        <el-option v-for="item in option5_1" :key="item.value" :label="item.label" :value="item.value">
-                        </el-option>
-                    </el-select>
-                </el-form-item>
-                <el-form-item label="目标病灶的评价" v-show="form5.ZH5_1=='a'||form5.ZH5_1=='b'||form5.ZH5_1=='c'">
-                    <el-select v-model="form5.ZH5_2" placeholder="请选择">
-                        <el-option v-for="item in option5_2" :key="item.value" :label="item.label" :value="item.value">
-                        </el-option>
-                    </el-select>
-                </el-form-item>
-                <el-form-item label="非目标病灶的评价" v-show="form5.ZH5_1=='a'||form5.ZH5_1=='b'||form5.ZH5_1=='c'">
-                    <el-select v-model="form5.ZH5_3" placeholder="请选择">
-                        <el-option v-for="item in option5_3" :key="item.value" :label="item.label" :value="item.value">
-                        </el-option>
-                    </el-select>
-                </el-form-item>
-                <el-form-item label="新病灶" v-show="form5.ZH5_1=='a'||form5.ZH5_1=='b'||form5.ZH5_1=='c'">
-                    <el-select v-model="form5.ZH5_4" placeholder="请选择">
-                        <el-option v-for="item in option5_4" :key="item.value" :label="item.label" :value="item.value">
-                        </el-option>
-                    </el-select>
-                </el-form-item>
-                <el-form-item label="总疗效" v-show="form5.ZH5_1=='a'||form5.ZH5_1=='b'||form5.ZH5_1=='c'">
-                    <el-select v-model="form5.ZH5_5" placeholder="请选择">
-                        <el-option v-for="item in option5_5" :key="item.value" :label="item.label" :value="item.value">
-                        </el-option>
-                    </el-select>
-                </el-form-item>
-                <el-form-item label="免疫治疗(iRECIST)--靶病灶" v-show="form5.ZH5_1=='a'||form5.ZH5_1=='b'||form5.ZH5_1=='c'">
-                    <el-select v-model="form5.ZH5_6" placeholder="请选择">
-                        <el-option v-for="item in option5_6" :key="item.value" :label="item.label" :value="item.value">
-                        </el-option>
-                    </el-select>
-                </el-form-item>
-                <el-form-item label="免疫治疗(iRECIST)--非靶病灶" v-show="form5.ZH5_1=='a'||form5.ZH5_1=='b'||form5.ZH5_1=='c'">
-                    <el-select v-model="form5.ZH5_7" placeholder="请选择">
-                        <el-option v-for="item in option5_7" :key="item.value" :label="item.label" :value="item.value">
-                        </el-option>
-                    </el-select>
-                </el-form-item>
+
+                <el-card class="card-item" shadow="hover">
+                    <div slot="header" class="card-title">
+                        <span>5.1 实施抗肿瘤药物疗效评价</span>
+                    </div>
+                    <div class="card-content">
+                        <el-form-item label="抗肿瘤药物疗效的选择">
+                            <el-select v-model="form5.ZH5_1" placeholder="请选择">
+                                <el-option v-for="item in option5_1" :key="item.value" :label="item.label"
+                                    :value="item.value">
+                                </el-option>
+                            </el-select>
+                        </el-form-item>
+                    </div>
+                </el-card>
+
+                <el-card class="card-item" shadow="hover">
+                    <div slot="header" class="card-title">
+                        <span>5.2 实体瘤疗效评价</span>
+                    </div>
+                    <div class="card-content">
+                        <el-form-item label="目标病灶的评价" v-show="form5.ZH5_1=='a'||form5.ZH5_1=='b'||form5.ZH5_1=='c'">
+                            <el-select v-model="form5.ZH5_2" placeholder="请选择">
+                                <el-option v-for="item in option5_2" :key="item.value" :label="item.label"
+                                    :value="item.value">
+                                </el-option>
+                            </el-select>
+                        </el-form-item>
+                        <el-form-item label="非目标病灶的评价" v-show="form5.ZH5_1=='a'||form5.ZH5_1=='b'||form5.ZH5_1=='c'">
+                            <el-select v-model="form5.ZH5_3" placeholder="请选择">
+                                <el-option v-for="item in option5_3" :key="item.value" :label="item.label"
+                                    :value="item.value">
+                                </el-option>
+                            </el-select>
+                        </el-form-item>
+                        <el-form-item label="新病灶" v-show="form5.ZH5_1=='a'||form5.ZH5_1=='b'||form5.ZH5_1=='c'">
+                            <el-select v-model="form5.ZH5_4" placeholder="请选择">
+                                <el-option v-for="item in option5_4" :key="item.value" :label="item.label"
+                                    :value="item.value">
+                                </el-option>
+                            </el-select>
+                        </el-form-item>
+                        <el-form-item label="总疗效" v-show="form5.ZH5_1=='a'||form5.ZH5_1=='b'||form5.ZH5_1=='c'">
+                            <el-select v-model="form5.ZH5_5" placeholder="请选择">
+                                <el-option v-for="item in option5_5" :key="item.value" :label="item.label"
+                                    :value="item.value">
+                                </el-option>
+                            </el-select>
+                        </el-form-item>
+                    </div>
+                </el-card>
+
+                <el-card class="card-item" shadow="hover">
+                    <div slot="header" class="card-title">
+                        <span>5.3 免疫治疗疗效评价</span>
+                    </div>
+                    <div class="card-content">
+                        <el-form-item label="免疫治疗(iRECIST)--靶病灶"
+                            v-show="form5.ZH5_1=='a'||form5.ZH5_1=='b'||form5.ZH5_1=='c'">
+                            <el-select v-model="form5.ZH5_6" placeholder="请选择">
+                                <el-option v-for="item in option5_6" :key="item.value" :label="item.label"
+                                    :value="item.value">
+                                </el-option>
+                            </el-select>
+                        </el-form-item>
+                        <el-form-item label="免疫治疗(iRECIST)--非靶病灶"
+                            v-show="form5.ZH5_1=='a'||form5.ZH5_1=='b'||form5.ZH5_1=='c'">
+                            <el-select v-model="form5.ZH5_7" placeholder="请选择">
+                                <el-option v-for="item in option5_7" :key="item.value" :label="item.label"
+                                    :value="item.value">
+                                </el-option>
+                            </el-select>
+                        </el-form-item>
+                    </div>
+                </el-card>
+
                 <el-form-item>
                     <el-button type="primary" @click="submit(4)">保存</el-button>
                     <el-button>重置</el-button>
@@ -344,7 +414,7 @@
 
 <script>
     export default {
-        name:'ZongHe',
+        name: 'ZongHe',
         data: function () {
             return {
                 form2: {
@@ -1086,18 +1156,18 @@
                 ],
             }
         },
-        activated(){
-            let _this=this;
+        activated() {
+            let _this = this;
             _this.$emit('athing');
         },
         methods: {
             submit(val) {
                 let _this = this;
                 console.log(_this);
-                _this.$emit('getSuccess',val);
+                _this.$emit('getSuccess', val);
                 _this.$router.push({
-                    name:'ZongHe'
-                })               
+                    name: 'ZongHe'
+                })
             }
         }
     }

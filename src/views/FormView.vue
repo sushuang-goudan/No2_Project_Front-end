@@ -62,7 +62,8 @@
                         </el-form-item>
                         <el-form-item label="是否出院后31天内重复住院">
                             <el-radio-group v-model="form1.HB1_16" placeholder="请选择">
-                                <el-radio v-for="item in option1_16" :key="item.value" :label="item.value">{{item.label}}
+                                <el-radio v-for="item in option1_16" :key="item.value" :label="item.value">
+                                    {{item.label}}
                                 </el-radio>
                             </el-radio-group>
                         </el-form-item>
@@ -93,33 +94,33 @@
                     </el-form>
                 </el-collapse-item>
                 <keep-alive include="ZongHe,ShouShu,NeiJing">
-                    <router-view  @getSuccess='submit' @athing='upAthing'></router-view>
+                    <router-view @getSuccess='submit' @athing='upAthing'></router-view>
                 </keep-alive>
             </el-collapse>
             <img id='upbutton' v-if="btnFlag" class="upButton" src="../assets/topButton.png" @click="backTop">
         </div>
-        <div id="progress" >
-            <progress-bar :active="whichActive" :titles="PBtitles"></progress-bar>
-        </div>        
+        <div id="progress">
+            <!--progress-bar :active="whichActive" :titles="PBtitles"></!--progress-bar-->
+        </div>
     </div>
 </template>
 
 <script>
     import SideBar from '../components/bars/SideBar.vue'
-    import ProgressBar from '../components/bars/ProgressBar.vue'
+    //import ProgressBar from '../components/bars/ProgressBar.vue'
     export default {
-        name:'formView',
+        name: 'formView',
         components: {
             SideBar,
-            ProgressBar
+            //ProgressBar
         },
         data: function () {
             return {
                 activeFormGroup: '',
-                btnFlag:false,
-                scrollTop:'',
-                collapseNumbers : '',
-                whichActive : '',              
+                btnFlag: false,
+                scrollTop: '',
+                collapseNumbers: '',
+                whichActive: '',
                 form1: {
                     HB1_1: '',
                     HB1_2: '',
@@ -379,20 +380,20 @@
                 ],
             }
         },
-        mounted(){           
-            window.addEventListener('scroll',this.scrollToTop,true);
+        mounted() {
+            window.addEventListener('scroll', this.scrollToTop, true);
         },
-        destroyed(){
-            window.removeEventListener('scroll',this.scrollToTop)
+        destroyed() {
+            window.removeEventListener('scroll', this.scrollToTop)
         },
-        activated(){
-             this.upAthing();
-        },       
+        activated() {
+            this.upAthing();
+        },
         methods: {
             submit(val) {
                 let _this = this;
-                _this.whichActive =Number(val+1);
-                _this.PBtitles[val].status='success';
+                _this.whichActive = Number(val + 1);
+                _this.PBtitles[val].status = 'success';
                 console.log(_this.form1);
                 if (_this.form1.HB1_16 === 'a') {
                     alert("出院后31天内重复住院,不符合上报要求");
@@ -445,60 +446,63 @@
                     return false;
                 }
             },
-            backTop(){
+            backTop() {
                 const that = this;
-                let timer= setInterval(()=>{
-                    let upSpeed = Math.floor(-that.scrollTop/5);
+                let timer = setInterval(() => {
+                    let upSpeed = Math.floor(-that.scrollTop / 5);
                     document.documentElement.scrollTop = document.body.scrollTop = that.scrollTop + upSpeed;
-                    if(that.scrollTop === 0){
+                    if (that.scrollTop === 0) {
                         clearInterval(timer);
                     }
-                },16)
+                }, 16)
             },
-            scrollToTop(){
-               //alert('进入');
-                const that=this;
+            scrollToTop() {
+                //alert('进入');
+                const that = this;
                 let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
                 that.scrollTop = scrollTop;
-                if(that.scrollTop > 60){
-                    that.btnFlag=true;
-                }else{
-                    that.btnFlag=false;
+                if (that.scrollTop > 60) {
+                    that.btnFlag = true;
+                } else {
+                    that.btnFlag = false;
                 }
             },
             upAthing() {
-            //计算路由更新后的el-collapse-item的个数（在<keep-alive>下）
+                //计算路由更新后的el-collapse-item的个数（在<keep-alive>下）
                 var numbers = document.getElementsByClassName('el-collapse-item').length;
-                this.collapseNumbers=numbers;
-                if(numbers>1){
-                    this.PBtitles[0].status='success';
-                    this.PBtitles[1].status='progress'
-                }                
+                this.collapseNumbers = numbers;
+                if (numbers > 1) {
+                    this.PBtitles[0].status = 'success';
+                    this.PBtitles[1].status = 'progress'
+                }
             },
             changeCoItem(val) {
-                let _this=this,index,lastStatus,activeStatus,nextStatus,i;
+                let _this = this,
+                    index, lastStatus, activeStatus, nextStatus, i;
                 _this.whichActive = Number(val.substr(9));
-                index=_this.whichActive-1;
-                activeStatus=_this.PBtitles[index].status;                
-                if(index ==(this.collapseNumbers-1)||index==0){
+                index = _this.whichActive - 1;
+                activeStatus = _this.PBtitles[index].status;
+                if (index == (this.collapseNumbers - 1) || index == 0) {
                     this.changeSide(index);
                 }
-                lastStatus=_this.PBtitles[index-1].status;
+                lastStatus = _this.PBtitles[index - 1].status;
                 //alert(lastStatus);             
-                nextStatus=_this.PBtitles[index+1].status;
-                if(lastStatus==='success'&&(activeStatus==='wait'||activeStatus==='progress')&& nextStatus!== 'progress'){
-                    _this.PBtitles[index].status ='finish'
-                    _this.PBtitles[index+1].status = 'progress'
-                }else if(activeStatus==='finish'){
-                    _this.PBtitles[index+1].status = 'progress'
-                    for(i=index+1;i<_this.collapseNumbers;i++){
-                        _this.PBtitles[i+1].status = 'wait'
+                nextStatus = _this.PBtitles[index + 1].status;
+                if (lastStatus === 'success' && (activeStatus === 'wait' || activeStatus === 'progress') &&
+                    nextStatus !== 'progress') {
+                    _this.PBtitles[index].status = 'finish'
+                    _this.PBtitles[index + 1].status = 'progress'
+                } else if (activeStatus === 'finish') {
+                    _this.PBtitles[index + 1].status = 'progress'
+                    for (i = index + 1; i < _this.collapseNumbers; i++) {
+                        _this.PBtitles[i + 1].status = 'wait'
                     }
                 }
             },
-            changeSide(index){
-                let _this=this,activeStatus=_this.PBtitles[index].status;
-                if(activeStatus=='progress'){
+            changeSide(index) {
+                let _this = this,
+                    activeStatus = _this.PBtitles[index].status;
+                if (activeStatus == 'progress') {
                     _this.PBtitles[index].status = 'finish'
                 }
             }
@@ -515,28 +519,30 @@
                 _arr.push(_this.form1.HB1_12);
                 return _arr.join(",")
             },
-            PBtitles : {
-                get: function(){
-                    var steps = [],step = {},i;
-                    if(this.collapseNumbers===1){
-                        step.title = '第' +1+'部分';
-                        step.key=1;
-                        step.status='wait'
-                        steps.push(step);
-                        step = {}                       
-                    }else{
-                        for (i =1;i < this.collapseNumbers;i++){
-                        step.title = '第' + (i+1) +'部分';
-                        step.key=i+1;
-                        step.status='wait'
+            PBtitles: {
+                get: function () {
+                    var steps = [],
+                        step = {},
+                        i;
+                    if (this.collapseNumbers === 1) {
+                        step.title = '第' + 1 + '部分';
+                        step.key = 1;
+                        step.status = 'wait'
                         steps.push(step);
                         step = {}
-                    }
+                    } else {
+                        for (i = 1; i < this.collapseNumbers; i++) {
+                            step.title = '第' + (i + 1) + '部分';
+                            step.key = i + 1;
+                            step.status = 'wait'
+                            steps.push(step);
+                            step = {}
+                        }
                     }
                     return steps;
                 },
-                set: function(){
-                    
+                set: function () {
+
                 }
             }
         },
@@ -554,12 +560,13 @@
 </script>
 
 <style scoped>
-     #upbutton {
+    #upbutton {
         position: fixed;
-        right :180px;
-        bottom:20px;
-        width:50px;
+        right: 180px;
+        bottom: 20px;
+        width: 50px;
     }
+
     #form-view {
         display: flex;
         margin: 0 auto;
@@ -577,12 +584,12 @@
         margin: 0 auto;
     }
 
-    #progress >>> .el-steps{
+    #progress>>>.el-steps {
         height: 80%;
         position: fixed;
-        top:12%;
-        bottom:10%;
-    }    
+        top: 12%;
+        bottom: 10%;
+    }
 
     .el-collapse {
         width: 80%;
