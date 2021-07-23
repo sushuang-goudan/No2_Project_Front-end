@@ -100,19 +100,19 @@
             <img id='upbutton' v-if="btnFlag" class="upButton" src="../assets/topButton.png" @click="backTop">
         </div>
         <div id="progress">
-            <!--progress-bar :active="whichActive" :titles="PBtitles"></!--progress-bar-->
+            <progress-bar :active="whichActive" :titles="PBtitles"></progress-bar>
         </div>
     </div>
 </template>
 
 <script>
     import SideBar from '../components/bars/SideBar.vue'
-    //import ProgressBar from '../components/bars/ProgressBar.vue'
+    import ProgressBar from '../components/bars/ProgressBar.vue'
     export default {
         name: 'formView',
         components: {
             SideBar,
-            //ProgressBar
+            ProgressBar
         },
         data: function () {
             return {
