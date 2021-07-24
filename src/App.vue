@@ -22,7 +22,6 @@
     },
     data: function () {
       return {
-
       }
     },
   }
