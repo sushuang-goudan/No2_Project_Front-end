@@ -6,30 +6,30 @@
         <div id="form">
             <el-collapse v-model="activeFormGroup" accordion @change="changeCoItem">
                 <el-collapse-item title="一、基本信息" name="formGroup1">
-                    <el-form ref="form1" :model="form1" label-width="300px">
+                    <el-form ref="form1" id="form1" :model="form1" @click.native="onForm" label-width="300px">
                         <el-form-item label="主刀医师">
-                            <el-input v-model="form1.HB1_1"></el-input>
+                            <el-input v-model="form1.HB1_1" name="1"></el-input>
                         </el-form-item>
                         <el-form-item label="质控医师（科主任）">
-                            <el-input v-model="form1.HB1_2"></el-input>
+                            <el-input v-model="form1.HB1_2" name="2"></el-input>
                         </el-form-item>
                         <el-form-item label="质控护士（护士长）">
-                            <el-input v-model="form1.HB1_3"></el-input>
+                            <el-input v-model="form1.HB1_3" name="3"></el-input>
                         </el-form-item>
                         <el-form-item label="主控医师（管床医生）">
-                            <el-input v-model="form1.HB1_4"></el-input>
+                            <el-input v-model="form1.HB1_4" name="4"></el-input>
                         </el-form-item>
                         <el-form-item label="责任护士（管床护士）">
-                            <el-input v-model="form1.HB1_5"></el-input>
+                            <el-input v-model="form1.HB1_5" name="5"></el-input>
                         </el-form-item>
                         <el-form-item label="上报科室">
-                            <el-input v-model="form1.HB1_6"></el-input>
+                            <el-input v-model="form1.HB1_6" name="6"></el-input>
                         </el-form-item>
                         <el-form-item label="患者住院号">
-                            <el-input v-model="form1.HB1_7"></el-input>
+                            <el-input v-model="form1.HB1_7" name="7"></el-input>
                         </el-form-item>
                         <el-form-item label="患者身份证号">
-                            <el-input v-model="form1.HB1_8"></el-input>
+                            <el-input v-model="form1.HB1_8" name="8"></el-input>
                         </el-form-item>
                         <el-form-item label="出生日期">
                             <el-input v-model="form1.HB1_9" :disabled="true"></el-input>
@@ -38,70 +38,72 @@
                             <el-input v-model="form1.HB1_10" :disabled="true"></el-input>
                         </el-form-item>
                         <el-form-item label="患者体重（kg）">
-                            <el-input v-model="form1.HB1_11"></el-input>
+                            <el-input v-model="form1.HB1_11" name="11"></el-input>
                         </el-form-item>
                         <el-form-item label="患者身高（cm）">
-                            <el-input v-model="form1.HB1_12"></el-input>
+                            <el-input v-model="form1.HB1_12" name="12"></el-input>
                         </el-form-item>
                         <el-form-item label="体重指数（kg/m2）">
-                            <el-input v-model="form1.HB1_13" :disabled="true">
+                            <el-input v-model="form1.HB1_13" name="13" :disabled="true">
                             </el-input>
                         </el-form-item>
                         <el-form-item label="主要诊断ICD-10四位亚目编码与名称">
-                            <el-select v-model="form1.HB1_14" placeholder="请选择">
+                            <el-select v-model="form1.HB1_14" name="14" @visible-change="onForm" placeholder="请选择">
                                 <el-option v-for="item in option1_14" :key="item.value" :label="item.label"
                                     :value="item.value">
                                 </el-option>
                             </el-select>
                         </el-form-item>
                         <el-form-item label="主要诊断ICD-10六位临床扩展编码与名称">
-                            <el-select v-model="form1.HB1_15" placeholder="请选择">
+                            <el-select v-model="form1.HB1_15" name="15" @visible-change="onForm" placeholder="请选择">
                                 <el-option v-for="item in option1_15[form1.HB1_14.charCodeAt()-'a'.charCodeAt()]"
                                     :key="item.value" :label="item.label" :value="item.value"></el-option>
                             </el-select>
                         </el-form-item>
                         <el-form-item label="是否出院后31天内重复住院">
-                            <el-radio-group v-model="form1.HB1_16" placeholder="请选择">
-                                <el-radio v-for="item in option1_16" :key="item.value" :label="item.value">
-                                    {{item.label}}
+                            <el-radio-group v-model="form1.HB1_16" name="16" placeholder="请选择">
+                                <el-radio v-for="item in option1_16" :key="item.value" :label="item.value">{{item.label}}
                                 </el-radio>
                             </el-radio-group>
                         </el-form-item>
                         <el-form-item label="费用支付方式">
-                            <el-select v-model="form1.HB1_17" placeholder="请选择">
+                            <el-select v-model="form1.HB1_17" name="17" @visible-change="onForm" placeholder="请选择">
                                 <el-option v-for="item in option1_17" :key="item.value" :label="item.label"
                                     :value="item.value">
                                 </el-option>
                             </el-select>
                         </el-form-item>
                         <el-form-item label="入院时间">
-                            <el-date-picker v-model="form1.HB1_18" type="date" placeholder="请选择日期"></el-date-picker>
+                            <el-date-picker v-model="form1.HB1_18" name="18" type="date" placeholder="请选择日期"></el-date-picker>
                         </el-form-item>
                         <el-form-item label="出院时间">
-                            <el-date-picker v-model="form1.HB1_19" type="date" placeholder="请选择日期"></el-date-picker>
+                            <el-date-picker v-model="form1.HB1_19" name="19" type="date" placeholder="请选择日期"></el-date-picker>
                         </el-form-item>
                         <el-form-item label="此次入院目的">
-                            <el-select v-model="form1.HB1_20" placeholder="请选择">
+                            <el-select v-model="form1.HB1_20" name="20" @visible-change="onForm" placeholder="请选择">
                                 <el-option v-for="item in option1_20" :key="item.value" :label="item.label"
                                     :value="item.value">
                                 </el-option>
                             </el-select>
                         </el-form-item>
                         <el-form-item>
-                            <el-button type="primary" @click="submit(0)">保存</el-button>
+                            <el-button type="primary" @click="submit('formGroup1')">保存</el-button>
                             <el-button>重置</el-button>
                         </el-form-item>
                     </el-form>
                 </el-collapse-item>
                 <keep-alive include="ZongHe,ShouShu,NeiJing">
-                    <router-view @getSuccess='submit' @athing='upAthing'></router-view>
+                    <router-view  @getSuccess='submit' @athing='upAthing' @onForm='onForm'></router-view>
                 </keep-alive>
             </el-collapse>
-            <img id='upbutton' v-if="btnFlag" class="upButton" src="../assets/topButton.png" @click="backTop">
         </div>
-        <div id="progress">
-            <progress-bar :active="whichActive" :titles="PBtitles"></progress-bar>
-        </div>
+        <div id="progress" >
+            <progress-bar :firstActive="firstActive" 
+            :secondActive="secondActive" 
+            :stageTree.sync="stageTree"
+            @back="backSomeWhere"
+            ></progress-bar>
+        </div>        
     </div>
 </template>
 
@@ -117,10 +119,10 @@
         data: function () {
             return {
                 activeFormGroup: '',
-                btnFlag: false,
-                scrollTop: '',
-                collapseNumbers: '',
-                whichActive: '',
+                collapseNumbers : '', 
+                stageTree : [],
+                firstActive :0,
+                secondActive: 0,           
                 form1: {
                     HB1_1: '',
                     HB1_2: '',
@@ -380,20 +382,12 @@
                 ],
             }
         },
-        mounted() {
-            window.addEventListener('scroll', this.scrollToTop, true);
-        },
-        destroyed() {
-            window.removeEventListener('scroll', this.scrollToTop)
-        },
-        activated() {
-            this.upAthing();
-        },
+        activated(){
+             this.upAthing();
+        },       
         methods: {
-            submit(val) {
+            submit() {
                 let _this = this;
-                _this.whichActive = Number(val + 1);
-                _this.PBtitles[val].status = 'success';
                 console.log(_this.form1);
                 if (_this.form1.HB1_16 === 'a') {
                     alert("出院后31天内重复住院,不符合上报要求");
@@ -446,57 +440,24 @@
                     return false;
                 }
             },
-            backTop() {
-                const that = this;
-                let timer = setInterval(() => {
-                    let upSpeed = Math.floor(-that.scrollTop / 5);
-                    document.documentElement.scrollTop = document.body.scrollTop = that.scrollTop + upSpeed;
-                    if (that.scrollTop === 0) {
-                        clearInterval(timer);
-                    }
-                }, 16)
-            },
-            scrollToTop() {
-                //alert('进入');
-                const that = this;
-                let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
-                that.scrollTop = scrollTop;
-                if (that.scrollTop > 60) {
-                    that.btnFlag = true;
-                } else {
-                    that.btnFlag = false;
-                }
-            },
             upAthing() {
                 //计算路由更新后的el-collapse-item的个数（在<keep-alive>下）
                 var numbers = document.getElementsByClassName('el-collapse-item').length;
-                this.collapseNumbers = numbers;
-                if (numbers > 1) {
-                    this.PBtitles[0].status = 'success';
-                    this.PBtitles[1].status = 'progress'
-                }
+                this.collapseNumbers=numbers;
+                //if(numbers>1){
+                  //  this.PBtitles[0].status='success';
+                  //  this.PBtitles[1].status='progress'
+                //}                
             },
-            changeCoItem(val) {
-                let _this = this,
-                    index, lastStatus, activeStatus, nextStatus, i;
-                _this.whichActive = Number(val.substr(9));
-                index = _this.whichActive - 1;
-                activeStatus = _this.PBtitles[index].status;
-                if (index == (this.collapseNumbers - 1) || index == 0) {
-                    this.changeSide(index);
-                }
-                lastStatus = _this.PBtitles[index - 1].status;
-                //alert(lastStatus);             
-                nextStatus = _this.PBtitles[index + 1].status;
-                if (lastStatus === 'success' && (activeStatus === 'wait' || activeStatus === 'progress') &&
-                    nextStatus !== 'progress') {
-                    _this.PBtitles[index].status = 'finish'
-                    _this.PBtitles[index + 1].status = 'progress'
-                } else if (activeStatus === 'finish') {
-                    _this.PBtitles[index + 1].status = 'progress'
-                    for (i = index + 1; i < _this.collapseNumbers; i++) {
-                        _this.PBtitles[i + 1].status = 'wait'
-                    }
+            changeCoItem(newVal) {
+                let _this=this,index=0;
+                index=Number(newVal.substr(9));
+                _this.stageTree[index-1].progressFlag = true;
+                _this.firstActive = index;
+            },
+            onForm(){
+                if(document.activeElement.tagName==='INPUT'){
+                    this.secondActive=Number(document.activeElement.getAttribute('name'));
                 }
             },
             changeSide(index) {
@@ -505,6 +466,42 @@
                 if (activeStatus == 'progress') {
                     _this.PBtitles[index].status = 'finish'
                 }
+            },
+            changeCoNumber(val) {
+                    var steps = [],step = {},i,form;
+                    if(val===1){
+                        step.label = 1;
+                        step.progressFlag = false;
+                        step.secondValue=0;
+                        form='form'+1;
+                        step.children= this.countChildren(document.getElementById(form))-1;
+                        steps.push(step);
+                        step = {}                       
+                    }else{
+                        for (i =1;i <= val;i++){
+                            step.label = i;
+                            step.progressFlag = false;
+                            step.secondValue=0;
+                            form='form'+i;
+                            step.children= this.countChildren(document.getElementById(form))-1;
+                            steps.push(step);
+                            step = {}
+                    }
+                    }
+                    this.stageTree=steps;
+            },
+            countChildren(obj){
+                var children=obj.children,childrenItemNum=0;
+                for(var i =0; i<children.length;i++){
+                    if(children[i].getAttribute("class")==='el-form-item'){
+                        childrenItemNum ++
+                    }
+                }
+                return childrenItemNum;
+            },
+            backSomeWhere(val){
+                this.activeFormGroup='formGroup'+val;
+                this.changeCoItem(this.activeFormGroup);
             }
         },
         computed: {
@@ -518,32 +515,6 @@
                 _arr.push(_this.form1.HB1_11);
                 _arr.push(_this.form1.HB1_12);
                 return _arr.join(",")
-            },
-            PBtitles: {
-                get: function () {
-                    var steps = [],
-                        step = {},
-                        i;
-                    if (this.collapseNumbers === 1) {
-                        step.title = '第' + 1 + '部分';
-                        step.key = 1;
-                        step.status = 'wait'
-                        steps.push(step);
-                        step = {}
-                    } else {
-                        for (i = 1; i < this.collapseNumbers; i++) {
-                            step.title = '第' + (i + 1) + '部分';
-                            step.key = i + 1;
-                            step.status = 'wait'
-                            steps.push(step);
-                            step = {}
-                        }
-                    }
-                    return steps;
-                },
-                set: function () {
-
-                }
             }
         },
         watch: {
@@ -554,19 +525,15 @@
             bmiWatch() {
                 let _this = this;
                 _this.setBmi();
+            },
+            collapseNumbers: function(newCoNumber){
+                this.changeCoNumber(newCoNumber);
             }
         }
     }
 </script>
 
 <style scoped>
-    #upbutton {
-        position: fixed;
-        right: 180px;
-        bottom: 20px;
-        width: 50px;
-    }
-
     #form-view {
         display: flex;
         margin: 0 auto;
@@ -582,13 +549,6 @@
         width: 85%;
         height: 100%;
         margin: 0 auto;
-    }
-
-    #progress>>>.el-steps {
-        height: 80%;
-        position: fixed;
-        top: 12%;
-        bottom: 10%;
     }
 
     .el-collapse {
