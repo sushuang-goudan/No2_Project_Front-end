@@ -17,7 +17,7 @@
 4、回到顶部
 
 ### Project setup
-````
+```
 npm install
 ```
 

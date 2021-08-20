@@ -13,7 +13,7 @@
 
 <script>
   import NavBar from './components/bars/NavBar.vue'
-  import FormView from './views/FormView.vue';
+  import FormView from './components/forms/DataPort.vue';
 
   export default {
     components: {
