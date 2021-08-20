@@ -1,4 +1,5 @@
 <template>
+<!--  原来的FormView，现在是数据端口-->
     <div id="form-view" class="formView">
         <div id="side">
             <side-bar></side-bar>
@@ -108,8 +109,8 @@
 </template>
 
 <script>
-    import SideBar from '../components/bars/SideBar.vue'
-    import ProgressBar from '../components/bars/ProgressBar.vue'
+    import SideBar from '../bars/SideBar.vue'
+    import ProgressBar from '../bars/ProgressBar.vue'
     export default {
         name: 'formView',
         components: {

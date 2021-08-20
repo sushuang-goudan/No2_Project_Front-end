@@ -7,17 +7,17 @@ const routes = [
   {
     path: '/shou-shu',
     name: 'ShouShu',
-    component: () => import('../components/forms/ShouShu.vue')
+    component: () => import('../components/dataforms/ShouShu.vue')
   },
   {
     path: '/nei-jing',
     name: 'NeiJing',
-    component: () => import('../components/forms/NeiJing.vue')
+    component: () => import('../components/dataforms/NeiJing.vue')
   },
   {
     path: '/zong-he',
     name: 'ZongHe',
-    component: () => import('../components/forms/ZongHe.vue')
+    component: () => import('../components/dataforms/ZongHe.vue')
   }
 ]
 
