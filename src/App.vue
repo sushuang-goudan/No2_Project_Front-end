@@ -8,18 +8,19 @@
 <!--        <form-view></form-view>-->
 <!--      </keep-alive>-->
 <!--    </div>-->
-    <AdminPort></AdminPort>
+<!--  <AdminPort></AdminPort>-->
+  <router-view></router-view>
   </div>
 </template>
 
 <script>
   // import NavBar from './components/bars/NavBar.vue'
   // import FormView from './components/forms/DataPort.vue';
-  import AdminPort from "./components/forms/AdminPort";
+  //import AdminPort from "./components/forms/AdminPort";
 
   export default {
     components: {
-      AdminPort,
+     // AdminPort,
       // NavBar,
       // FormView
     },
@@ -31,15 +32,13 @@
 </script>
 
 <style>
-  #top {
-    width: 70vw;
-    height: 15vh;
-    margin: 0 15vw;
-  }
-
-  #bottom {
-    width: 70vw;
-    height: 80vh;
-    margin: 0 15vw;
-  }
+/*取消链接的下划线*/
+a{
+  text-decoration:none;
+}
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 </style>

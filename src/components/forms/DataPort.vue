@@ -1,5 +1,7 @@
 <template>
 <!--  原来的FormView，现在是数据端口-->
+<div>
+    <nav-bar></nav-bar>
     <div id="form-view" class="formView">
         <div id="side">
             <side-bar></side-bar>
@@ -106,14 +108,17 @@
             ></progress-bar>
         </div>        
     </div>
+</div>
 </template>
 
 <script>
+    import NavBar from '../bars/NavBar.vue'
     import SideBar from '../bars/SideBar.vue'
     import ProgressBar from '../bars/ProgressBar.vue'
     export default {
         name: 'formView',
         components: {
+            NavBar,
             SideBar,
             ProgressBar
         },
@@ -393,14 +398,15 @@
                 if (_this.form1.HB1_16 === 'a') {
                     alert("出院后31天内重复住院,不符合上报要求");
                 } else {
+                    //使用子路由，让该页面首页不变
                     if (_this.form1.HB1_20 === 'a') {
-                        _this.$router.replace('/shou-shu');
+                        _this.$router.replace('/form/shou-shu');
                         _this.activeFormGroup = '';
                     } else if (_this.form1.HB1_20 === 'b') {
-                        _this.$router.replace('/nei-jing');
+                        _this.$router.replace('/form/nei-jing');
                         _this.activeFormGroup = '';
                     } else if (_this.form1.HB1_20 === 'c') {
-                        _this.$router.replace('/zong-he');
+                        _this.$router.replace('/form/zong-he');
                         _this.activeFormGroup = '';
                     }
                 }
@@ -547,9 +553,15 @@
     }
 
     #form {
-        width: 85%;
+        width: 75%;
         height: 100%;
         margin: 0 auto;
+    }
+
+    #progress{
+        width: 10%;
+        height: 100%;
+        margin: 0 auto;       
     }
 
     .el-collapse {

@@ -34,7 +34,7 @@
 export default {
   name: "Step",
   props: {
-      'stageTree':Object,
+      'stageTree':Array,
       'firstActive':Number,
       'secondActive':Number
   },
