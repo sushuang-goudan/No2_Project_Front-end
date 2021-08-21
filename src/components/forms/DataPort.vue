@@ -96,7 +96,7 @@
                     </el-form>
                 </el-collapse-item>
                 <keep-alive include="ZongHe,ShouShu,NeiJing">
-                    <router-view  @getSuccess='submit' @athing='upAthing' @onForm='onForm'></router-view>
+                    <router-view  @getSuccess='submit' @athing='upAthing' @dthing='upAthing' @onForm='onForm'></router-view>
                 </keep-alive>
             </el-collapse>
         </div>
@@ -390,7 +390,7 @@
         },
         activated(){
              this.upAthing();
-        },       
+        },   
         methods: {
             submit() {
                 let _this = this;
@@ -448,13 +448,10 @@
                 }
             },
             upAthing() {
-                //计算路由更新后的el-collapse-item的个数（在<keep-alive>下）
-                var numbers = document.getElementsByClassName('el-collapse-item').length;
-                this.collapseNumbers=numbers;
-                //if(numbers>1){
-                  //  this.PBtitles[0].status='success';
-                  //  this.PBtitles[1].status='progress'
-                //}                
+                let _this = this;
+                //计算组件渲染、销毁后的el-collapse-item的个数（在<keep-alive>下）
+                let numbers = document.getElementsByClassName('el-collapse-item').length;
+                _this.collapseNumbers=numbers;
             },
             changeCoItem(newVal) {
                 let _this=this,index=0;
@@ -533,6 +530,7 @@
                 let _this = this;
                 _this.setBmi();
             },
+            //折叠面板项的个数变化则，，，
             collapseNumbers: function(newCoNumber){
                 this.changeCoNumber(newCoNumber);
             }
@@ -543,25 +541,27 @@
 <style scoped>
     #form-view {
         display: flex;
-        margin: 0 auto;
+        justify-content: flex-start;
     }
 
     #side {
         width: 15%;
         height: 100%;
-        margin: 0 auto;
+        margin: 0px;
     }
 
     #form {
         width: 75%;
         height: 100%;
-        margin: 0 auto;
+        margin: 0px;
     }
 
     #progress{
+        position: fixed;
+        top:inherit;
+        right:0;
         width: 10%;
-        height: 100%;
-        margin: 0 auto;       
+        height: 100%;     
     }
 
     .el-collapse {

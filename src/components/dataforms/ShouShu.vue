@@ -15,7 +15,7 @@
                     </el-radio-group>
                 </el-form-item>
                 <el-form-item label="CT分期病理学定义" v-show="form2.SS2_2==='a'">
-                    <el-select v-model="form2.SS2_2_1_1" placeholder="请选择" @visible-change="onFrom" name="3">
+                    <el-select v-model="form2.SS2_2_1_1" placeholder="请选择" @visible-change="onForm" name="3">
                         <el-option v-for="item in option2_2_1_1" :key="item.value" :label="item.label"
                             :value="item.value">
                         </el-option>
@@ -3024,6 +3024,10 @@
                 ],
 
             }
+        },
+        deactivated(){//在<keep-alive>下ShouShu组件销毁时，调用该函数（用于解决返回到/form时，进度条个数不更新）
+            let _this = this;
+            _this.$emit('dthing');
         },
         activated() {
             let _this = this

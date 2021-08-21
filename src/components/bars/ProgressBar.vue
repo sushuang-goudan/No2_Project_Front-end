@@ -35,8 +35,8 @@ export default {
   name: "Step",
   props: {
       'stageTree':Array,
-      'firstActive':Number,
-      'secondActive':Number
+      'firstActive':Number,//当前一级触发点
+      'secondActive':Number//当前二级触发点
   },
   data() {
       return {
@@ -117,16 +117,10 @@ export default {
 
 
 <style scoped>
-.step {
-  width: auto;
-  margin: auto;
-  height: inherit;
+.step,.step_mod{
   display: flex;
-  justify-content:baseline;
   flex-direction: column;
   align-items: center;
-  position: fixed;
-  top:10%;
 }
 .dot{
     width: 12px;
@@ -134,11 +128,13 @@ export default {
     border-radius: 12px;
     background:#c3c3c3;
   }
-.step_mod {
-    display: flex;
-    justify-content: baseline;
-    align-items: center;
-    flex-direction: column;
+.bar {
+    width: 4px;
+    height: 20px;
+    background:#c3c3c3;
+  }
+.blue {
+    background: #0290ff;
   }
 .process {
     width: 30px;
@@ -179,13 +175,5 @@ export default {
     box-sizing: border-box;
     caret-color: rgb(0,0,0,0);
     cursor: pointer;
-  }
-  .bar {
-    width: 4px;
-    height: 20px;
-    background:#c3c3c3;
-  }
-  .blue {
-    background: #0290ff;
   }
 </style>
