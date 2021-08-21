@@ -9,7 +9,9 @@
 <!--      </keep-alive>-->
 <!--    </div>-->
 <!--  <AdminPort></AdminPort>-->
+<keep-alive include="formView">
   <router-view></router-view>
+</keep-alive>
   </div>
 </template>
 
@@ -40,5 +42,9 @@ a{
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+/*总是显示进度条，解决展开关闭折叠面板，页面伸缩的问题*/
+html {
+  overflow: scroll;
 }
 </style>

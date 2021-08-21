@@ -1331,6 +1331,11 @@
             let _this = this;
             _this.$emit('athing')
         },
+        deactivated(){
+            let _this = this;
+           // alert('销毁');
+            _this.$emit('dthing');
+        },
         methods: {
             submit() {
                 let _this = this;
