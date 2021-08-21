@@ -9,16 +9,18 @@
 <!--      </keep-alive>-->
 <!--    </div>-->
 <!--  <AdminPort></AdminPort>-->
+
 <keep-alive include="formView">
   <router-view></router-view>
 </keep-alive>
+
   </div>
 </template>
 
 <script>
   // import NavBar from './components/bars/NavBar.vue'
   // import FormView from './components/forms/DataPort.vue';
-  //import AdminPort from "./components/forms/AdminPort";
+  // import AdminPort from "./components/forms/AdminPort";
 
   export default {
     components: {

@@ -1,7 +1,8 @@
 <template>
 <!--  管理端口的导航栏-->
   <div>
-    <el-page-header title="title" content="content"></el-page-header>
+    <el-avatar icon="el-icon-user-solid" size="large"></el-avatar>
+    <span style="margin-left: 15px;line-height: 18px">用户名称</span>
   </div>
 </template>
 
