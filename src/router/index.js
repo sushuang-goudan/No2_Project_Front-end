@@ -11,15 +11,15 @@ const routes = [{ //门户---登录页面
     },
     { //数据端口
         path: '/form',
-        name: 'FormView',
+        name: 'DataPort',
         component: () =>
             import ('../components/forms/DataPort.vue'),
         children: [{
-                path: '/form/shou-shu',
-                name: 'ShouShu',
-                component: () =>
-                    import ('../components/dataforms/ShouShu.vue')
-            },
+            path: '/form/shou-shu',
+            name: 'ShouShu',
+            component: () =>
+                import ('../components/dataforms/ShouShu.vue')
+        },
             {
                 path: '/form/nei-jing',
                 name: 'NeiJing',
@@ -31,13 +31,20 @@ const routes = [{ //门户---登录页面
                 name: 'ZongHe',
                 component: () =>
                     import ('../components/dataforms/ZongHe.vue')
-            },
-            {
-                path: '/shou-ye/hui-zong',
-                name: 'Huizong',
-                component: () =>
-                    import('../components/adminforms/shouye/Huizong.vue')
-            },
+            }],
+    },
+    //管理端口
+    {
+        path: '/admin',
+        name: 'AdminPort',
+        component: () =>
+            import('../components/forms/AdminPort'),
+        children: [{
+            path: '/shou-ye/hui-zong',
+            name: 'Huizong',
+            component: () =>
+                import('../components/adminforms/shouye/Huizong.vue')
+        },
             {
                 path: '/shou-shu/shu-ju',
                 name: 'Shuju',
@@ -103,8 +110,7 @@ const routes = [{ //门户---登录页面
                 name: 'Mima',
                 component: () =>
                     import('../components/adminforms/xitong/Mima')
-            },
-        ]
+            },]
     }
 ]
 
