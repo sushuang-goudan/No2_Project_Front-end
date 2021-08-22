@@ -1,8 +1,6 @@
 <template>
 <!--  管理端口的侧边栏-->
-  <div>
-    <el-row class="tac2">
-      <el-col :span="16">
+  <div class="tac2">
         <el-menu>
           <p>质控中心平台</p>
         </el-menu>
@@ -68,8 +66,6 @@
           </el-submenu>
 
         </el-menu>
-      </el-col>
-    </el-row>
   </div>
 </template>
 

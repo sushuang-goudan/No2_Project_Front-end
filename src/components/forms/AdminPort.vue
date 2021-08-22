@@ -43,13 +43,13 @@ export default {
 </script>
 
 <style scoped>
-  /*.el-aside{*/
-  /*  width: 20% !important;*/
-  /*}*/
-  /*.el-container .el-container{*/
-  /*    width: 60%;*/
-  /*  }*/
-  /*.el-main{*/
-  /*  padding-top: 0;*/
-  /*}*/
+.el-aside{
+  width:10% !important;
+}
+.el-container .el-container{
+  width:60%;
+}
+.el-main{
+  padding-top:0 ;
+}
 </style>
