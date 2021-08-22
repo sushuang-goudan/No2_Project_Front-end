@@ -12,7 +12,7 @@
       </el-aside>
 
       <el-container>
-        <el-header>
+        <el-header style="text-align: right">
 <!--          头部导航栏-->
           <NavBar_></NavBar_>
         </el-header>
@@ -20,7 +20,6 @@
         <el-main>
 <!--      主体部分-->
               <router-view></router-view>
-
         </el-main>
 
       </el-container>
