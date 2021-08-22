@@ -12,19 +12,14 @@
       </el-aside>
 
       <el-container>
-        <el-header>
+        <el-header style="text-align: right">
 <!--          头部导航栏-->
           <NavBar_></NavBar_>
         </el-header>
 
         <el-main>
 <!--      主体部分-->
-          <el-row >
-            <el-col class="tac3" :span="24">
               <router-view></router-view>
-            </el-col>
-          </el-row>
-
         </el-main>
 
       </el-container>
@@ -48,5 +43,13 @@ export default {
 </script>
 
 <style scoped>
-
+  /*.el-aside{*/
+  /*  width: 20% !important;*/
+  /*}*/
+  /*.el-container .el-container{*/
+  /*    width: 60%;*/
+  /*  }*/
+  /*.el-main{*/
+  /*  padding-top: 0;*/
+  /*}*/
 </style>
