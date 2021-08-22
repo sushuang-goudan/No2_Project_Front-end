@@ -1,11 +1,6 @@
 <template>
   <div id="main">
     <el-row>
-      <el-col :span="24">
-        <div class="grid-content1 bg-purple"></div>
-      </el-col>
-    </el-row>
-    <el-row>
       <el-col :span="8">
         <div class="grid-content2 bg-purple"></div>
       </el-col>
@@ -402,10 +397,6 @@
 <style scoped>
   .el-row {
     margin-top: 10px;
-  }
-
-  .grid-content1 {
-    height: 60px;
   }
 
   .grid-content2 {
