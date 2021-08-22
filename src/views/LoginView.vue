@@ -9,13 +9,13 @@
         <div v-show="!err2021" class="whichPart">
             <el-row type="flex" justify="center" :gutter="60">
                 <el-col :span="6">
-                    <a href="#/?err2021=true">
+                    <a href="#/?err2021=true&id=1">
                     <figure><img src="../assets/admin-img.png">
                         <figcaption>填报数据页面</figcaption>
                     </figure></a>
                 </el-col>
                 <el-col :span="6">
-                    <a href="#/?err2021=true">
+                    <a href="#/?err2021=true&id=2">
                         <figure><img src="../assets/form-img.png">
                             <figcaption>管理界面</figcaption>
                         </figure></a>
@@ -125,7 +125,11 @@ export default {
             let _this = this;
             _this.$refs[formName].validate((valid) => {
                 if(valid){//表单校验成功
-                   _this.$router.replace('/form');
+                   if(_this.$route.query.id == 1){
+                       _this.$router.replace('/form');
+                   }else {
+                       _this.$router.replace('/admin');
+                   }
                 }
             })
         },
