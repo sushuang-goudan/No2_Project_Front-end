@@ -51,5 +51,6 @@ export default {
 }
 .el-main{
   padding-top:0 ;
+  background: #F9FAFC; 
 }
 </style>
