@@ -47,6 +47,6 @@ a{
 }
 /*总是显示进度条，解决展开关闭折叠面板，页面伸缩的问题*/
 html {
-  overflow: scroll;
+  overflow-y: scroll;
 }
 </style>
