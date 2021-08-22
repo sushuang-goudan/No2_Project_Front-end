@@ -29,7 +29,7 @@
   import * as am4charts from "@amcharts/amcharts4/charts";
 
   export default {
-    name: "ShuQian",
+    name: "ShuHou",
     data: function () {
       return {}
     },

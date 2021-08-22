@@ -16,9 +16,12 @@
         <div class="grid-content3 bg-purple" id="chartdiv33"></div>
       </el-col>
     </el-row>
-    <el-row>
-      <el-col :span="12">
+    <el-row :gutter="24">
+      <el-col :span="8" offset="1">
         <div class="grid-content4 bg-purple" id="chartdiv41"></div>
+      </el-col>
+      <el-col :span="8">
+        <div class="grid-content4 bg-purple" id="chartdiv42"></div>
       </el-col>
     </el-row>
   </div>
@@ -29,7 +32,7 @@
   import * as am4charts from "@amcharts/amcharts4/charts";
 
   export default {
-    name: "ShuQian",
+    name: "ShuZhong",
     data: function () {
       return {}
     },
@@ -102,58 +105,11 @@
         label2.text = "[font-size: 14]" + titleText;
         label2.align = "center";
         label2.isMeasured = false;
-        label2.x = am4core.percent(37);
+        label2.x = am4core.percent(33);
         label2.y = am4core.percent(90);
 
       },
       createChart33(container, data, titleText) {
-        //创建图
-        let chart = container.createChild(am4charts.XYChart);
-        //绑定图数据
-        chart.data = data;
-        let categoryAxis = chart.yAxes.push(new am4charts.CategoryAxis());
-        categoryAxis.renderer.grid.template.location = 0;
-        categoryAxis.dataFields.category = "key";
-        categoryAxis.renderer.minGridDistance = 1;
-        categoryAxis.renderer.inversed = true;
-        categoryAxis.renderer.grid.template.disabled = true;
-        categoryAxis.renderer.labels.template.fontSize = 12;
-        categoryAxis.renderer.minGridDistance = 20;
-
-        let valueAxis = chart.xAxes.push(new am4charts.ValueAxis());
-        valueAxis.min = 0;
-        valueAxis.renderer.labels.template.fontSize = 12;
-        valueAxis.renderer.minGridDistance = 30;
-
-
-        let series = chart.series.push(new am4charts.ColumnSeries());
-        series.dataFields.categoryY = "key";
-        series.dataFields.valueX = "value";
-        series.tooltipText = "{valueX.value}"
-        series.columns.template.strokeOpacity = 0;
-        series.columns.template.column.cornerRadiusBottomRight = 5;
-        series.columns.template.column.cornerRadiusTopRight = 5;
-        series.columns.template.width = am4core.percent(50);
-
-        let labelBullet = series.bullets.push(new am4charts.LabelBullet())
-        labelBullet.label.horizontalCenter = "left";
-        labelBullet.label.dx = 10;
-        labelBullet.label.text = "[font-size: 14]{values.valueX.workingValue}";
-        labelBullet.locationX = 1;
-
-        series.columns.template.adapter.add("fill", function (fill, target) {
-          return chart.colors.getIndex(target.dataItem.index);
-        });
-
-        categoryAxis.sortBySeries = series;
-        //设置标题
-        let title = chart.titles.create();
-        title.text = "[font-size: 16]" + titleText;
-        title.align = "left";
-        title.marginBottom = 10;
-
-      },
-      createChart41(container, data, titleText) {
         //创建图
         let chart = container.createChild(am4charts.XYChart);
         chart.data = data;
@@ -183,8 +139,8 @@
         let legend = new am4charts.Legend();
         chart.legend = legend;
         legend.position = "absolute";
-        legend.x = -213;
-        legend.y = 187;
+        legend.x = -148;
+        legend.y = 218;
         let marker = legend.markers.template.children.getIndex(0);
         marker.strokeOpacity = 1;
         marker.stroke = am4core.color("#fff");
@@ -202,6 +158,79 @@
         series1.columns.template.width = am4core.percent(45);
         series2.columns.template.width = am4core.percent(45);
       },
+      createChart41(container, data, titleText) {
+        //创建图
+        let chart = container.createChild(am4charts.PieChart);
+        //绑定图数据
+        chart.data = data;
+        //创建series
+        let series = chart.series.push(new am4charts.PieSeries());
+        //设置series字段
+        series.dataFields.value = "value";
+        series.dataFields.category = "key";
+        //设置边框
+        series.slices.template.stroke = am4core.color("#fff");
+        series.slices.template.strokeOpacity = 0.5;
+        //设置不透明度
+        series.slices.template.fillOpacity = 0.75;
+        //鼠标移动颜色会加深
+        let hoverState = series.slices.template.states.create("hover");
+        //设置不透明度
+        hoverState.properties.fillOpacity = 1;
+        //设置标签
+        series.ticks.template.disabled = true;
+        series.alignLabels = false;
+        series.labels.template.text = "{key}\n{value.percent.formatNumber('#.0')}%";
+        series.labels.template.fontSize = 14;
+        series.labels.template.radius = am4core.percent(-40);
+        series.labels.template.fill = am4core.color("#fff");
+        let label = chart.createChild(am4core.Label);
+        label.text = titleText;
+        label.align = "center";
+      },
+      createChart42(container, data, titleText) {
+        //创建图
+        let chart = container.createChild(am4charts.PieChart);
+        //绑定图数据
+        chart.data = data;
+        //创建series
+        let series = chart.series.push(new am4charts.PieSeries());
+        //设置series字段
+        series.dataFields.value = "value";
+        series.dataFields.category = "key";
+        //设置边框
+        series.slices.template.stroke = am4core.color("#fff");
+        series.slices.template.strokeOpacity = 0.5;
+        //设置不透明度
+        series.slices.template.fillOpacity = 0.75;
+        //鼠标移动颜色会加深
+        let hoverState = series.slices.template.states.create("hover");
+        //设置不透明度
+        hoverState.properties.fillOpacity = 1;
+        //设置标签
+        series.ticks.template.disabled = true;
+        series.labels.template.disabled = true;
+        let label = chart.createChild(am4core.Label);
+        label.text = titleText;
+        label.align = "center";
+        chart.radius = am4core.percent(90);
+
+        //添加图例
+        let legend = new am4charts.Legend();
+        chart.legend = legend;
+        legend.position = "right";
+        legend.scrollable = true;
+        legend.fontSize = 12;
+        legend.maxWidth = 150;
+        series.legendSettings.labelText = "{key}";
+        series.legendSettings.valueText = " ";
+        let marker = legend.markers.template.children.getIndex(0);
+        marker.strokeOpacity = 1;
+        marker.stroke = am4core.color("#fff");
+        let markerTemplate = chart.legend.markers.template;
+        markerTemplate.width = 15;
+        markerTemplate.height = 15;
+      }
     },
     mounted() {
       let _this = this;
@@ -210,6 +239,7 @@
       let container32 = am4core.create("chartdiv32", am4core.Container);
       let container33 = am4core.create("chartdiv33", am4core.Container);
       let container41 = am4core.create("chartdiv41", am4core.Container);
+      let container42 = am4core.create("chartdiv42", am4core.Container);
 
       //设置container
       container31.width = am4core.percent(100);
@@ -228,6 +258,9 @@
       container41.height = am4core.percent(100);
       container41.layout = "horizontal";
 
+      container42.width = am4core.percent(100);
+      container42.height = am4core.percent(100);
+      container42.layout = "horizontal";
 
       //创建data
       let data31 = 50;
@@ -235,66 +268,66 @@
       let data32 = 20;
 
       let data33 = [{
-        "key": "肠梗阻",
-        "value": 9
+        "key": "11-01",
+        "value1": 150,
+        "value2": 120
       }, {
-        "key": "吻合口狭窄",
-        "value": 8
+        "key": "11-02",
+        "value1": 120,
+        "value2": 180
       }, {
-        "key": "食物反流",
-        "value": 7
+        "key": "11-03",
+        "value1": 10,
+        "value2": 160
       }, {
-        "key": "消化不良",
-        "value": 6
+        "key": "11-04",
+        "value1": 170,
+        "value2": 70
       }, {
-        "key": "倾倒综合征",
-        "value": 5
+        "key": "11-05",
+        "value1": 160,
+        "value2": 150
       }, {
-        "key": "胃排空迟缓",
-        "value": 4
+        "key": "11-06",
+        "value1": 220,
+        "value2": 80
       }, {
-        "key": "切口疝",
-        "value": 3
-      }, {
-        "key": "其他",
-        "value": 2
+        "key": "11-07",
+        "value1": 150,
+        "value2": 300
       }];
 
       let data41 = [{
-        "key": "11-01",
-        "value1": 15,
-        "value2": 12
+        "key": "是",
+        "value": 70
       }, {
-        "key": "11-02",
-        "value1": 13,
-        "value2": 18
+        "key": "否",
+        "value": 30
+      }];
+
+      let data42 = [{
+        "key": "内镜下胃黏膜切除术(EMR)",
+        "value": 25
       }, {
-        "key": "11-03",
-        "value1": 7,
-        "value2": 14
+        "key": "内镜下胃黏膜剥离术(ESD)",
+        "value": 25
       }, {
-        "key": "11-04",
-        "value1": 17,
-        "value2": 7
+        "key": "内镜下经黏膜下隧道胃病损切除术(STER)",
+        "value": 25
       }, {
-        "key": "11-05",
-        "value1": 15,
-        "value2": 20
+        "key": "无法确定或无记录",
+        "value": 10
       }, {
-        "key": "11-06",
-        "value1": 25,
-        "value2": 6
-      }, {
-        "key": "11-07",
-        "value1": 18,
-        "value2": 27
+        "key": "其他",
+        "value": 15
       }];
 
       //创建Chart
-      _this.createChart312(container31, data31, "并发症发生率");
-      _this.createChart312(container32, data32, "追加手术率");
-      _this.createChart33(container33, data33, "并发症排名");
-      _this.createChart41(container41, data41, "平均住院天数统计");
+      _this.createChart312(container31, data31, "手术时间 ≥ 3小时");
+      _this.createChart312(container32, data32, "出血量 ≥ 1500ml");
+      _this.createChart33(container33, data33, "患者性别年龄统计");
+      _this.createChart41(container41, data41, "术中是否使用抗菌药物");
+      _this.createChart42(container42, data42, "术式选择");
       //去除logo
       let eles = document.querySelectorAll("[aria-labelledby$=-title]")
       for (let i = 0; i < eles.length; i++) {
